@@ -7,17 +7,23 @@
 
 import Foundation
 
+// /journeys
+
+struct Journeys : Decodable {
+	
+}
+
 // /locations
 struct Stops : Decodable {
 	let stops : [Stop]
 }
 
 struct Stop : Decodable {
-//	let type	: String?
-//	let id		: Int?
+	let type	: String?
+	let id		: String?
 	let name	: String?
-//	let location : Location
-//	let products : Products
+	let location : Location
+	let products : Products
 }
 
 

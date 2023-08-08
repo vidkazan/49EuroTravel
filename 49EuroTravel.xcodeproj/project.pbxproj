@@ -62,6 +62,7 @@
 		7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndResultsView.swift; sourceTree = "<group>"; };
 		7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveSubviews.swift"; sourceTree = "<group>"; };
 		7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+TextConstructor.swift"; sourceTree = "<group>"; };
+		7D8D1F622A82DADC00DC3351 /* Journey.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Journey.geojson; sourceTree = "<group>"; };
 		7DC4E84F2A0521150053ED3E /* 49EuroTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 49EuroTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC4E8522A0521150053ED3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DC4E8542A0521150053ED3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 				7DC4E8822A0523C80053ED3E /* DTO.swift */,
 				7DC4E8852A0524430053ED3E /* ApiServiceErrors.swift */,
 				7DC4E8872A05249D0053ED3E /* ApiService.swift */,
+				7D8D1F622A82DADC00DC3351 /* Journey.geojson */,
 			);
 			path = model;
 			sourceTree = "<group>";

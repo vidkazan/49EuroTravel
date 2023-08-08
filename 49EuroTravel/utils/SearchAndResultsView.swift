@@ -7,12 +7,18 @@
 
 import UIKit
 
+enum LocationDirectionType{
+	case departure
+	case arrival
+}
+
 protocol SearchViewDelegate {
-	func textFieldDidChange(text: String, type: String?)
-//	func stopCellDidPressed(text: String)
+	func textFieldDidChange(text: String, type: LocationDirectionType)
+	func stopCellDidPressed(stop : Stop, type: LocationDirectionType)
 }
 
 class SearchAndResultsView: UIView {
+	var type : LocationDirectionType
 	var stops : [Stop] = []
 	var delegate: SearchViewDelegate?
 	let resultsView : UIStackView = {
@@ -31,17 +37,21 @@ class SearchAndResultsView: UIView {
 	}()
 	
 	@objc private func textFieldDidChange(_ textField: UITextField) {
-		delegate?.textFieldDidChange(text: textField.text ?? "", type: textField.placeholder)
+		delegate?.textFieldDidChange(text: textField.text ?? "", type: self.type)
 	}
 	
 	@objc private func viewTapped(_ sender : UITapGestureRecognizer) {
 		guard let tappedView = sender.view else { return }
 		guard let indexOfTappedView = resultsView.arrangedSubviews.firstIndex(of: tappedView) else { return }
-		guard let stopName = stops[indexOfTappedView].name else { return }
-		self.stopCellDidPressed(text: stopName)
+		let tappedStop = stops[indexOfTappedView]
+		delegate?.stopCellDidPressed(stop : tappedStop, type: self.type)
+		self.name.text = tappedStop.name
+		self.resultsView.removeArrangedSubviews()
+		self.name.endEditing(true)
 	}
 	
-	init(placeholder : String?, image : UIView?) {
+	init(placeholder : String?, image : UIView?, type : LocationDirectionType) {
+		self.type = type
 		super.init(frame: .zero)
 		self.layer.cornerRadius = Constants.CornerRadius.small
 		self.backgroundColor = .systemGray6
@@ -52,14 +62,6 @@ class SearchAndResultsView: UIView {
 		name.placeholder = placeholder
 		setupStackView()
 		setupUI()
-	}
-	
-	func stopCellDidPressed(text: String) {
-		print(text)
-		self.name.text = text
-		self.resultsView.removeArrangedSubviews()
-		self.name.selectedTextRange = nil
-		self.name.endEditing(true)
 	}
 	
 	func setupStackView(){
@@ -75,7 +77,9 @@ class SearchAndResultsView: UIView {
 			case false:
 				stops.forEach { Stop in
 					resultsView.addArrangedSubview(createLabelByText(text: Stop.name, alert : false))
-					resultsView.arrangedSubviews.last?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:))))
+					resultsView.arrangedSubviews.last?.addGestureRecognizer(
+						UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
+					)
 				}
 		}
 	}

@@ -8,13 +8,16 @@
 import UIKit
 
 class SearchLocationViewController : UIViewController, SearchViewDelegate {
+	func stopCellDidPressed(stop : Stop, type: LocationDirectionType) {
+		self.viewModel.updateSearchData(stop: stop, type: type)
+	}
 	
 	static public let now = Date()
 	var viewModel : SearchLocationViewControllerViewModel
 	var magnifierImage : UIView?
 	var searchController = UISearchController(searchResultsController: nil)
-	var searchFieldFrom = SearchAndResultsView(placeholder: "from", image: Constants.locationIcon)
-	var searchFieldTo = SearchAndResultsView(placeholder: "to",image: Constants.flipIcon)
+	var searchFieldFrom = SearchAndResultsView(placeholder: "from", image: Constants.locationIcon, type: .departure)
+	var searchFieldTo = SearchAndResultsView(placeholder: "to",image: Constants.flipIcon, type: .arrival)
 
 	init(_ viewModel: SearchLocationViewControllerViewModel = SearchLocationViewControllerViewModel() ) {
 		self.viewModel = viewModel
@@ -22,25 +25,22 @@ class SearchLocationViewController : UIViewController, SearchViewDelegate {
 	}
 	
 	
-	func textFieldDidChange(text: String, type : String?) {
+	func textFieldDidChange(text: String, type : LocationDirectionType) {
 		switch type {
-		case "from":
+		case .departure:
 			switch text.count {
 			case 0:
 				viewModel.searchLocationDataDeparture = []
 			default:
 				viewModel.updateSearchText(text: text, isDeparture: true)
 			}
-		case "to":
+		case .arrival:
 			switch text.count {
 			case 0:
 				viewModel.searchLocationDataArrival = []
 			default:
 				viewModel.updateSearchText(text: text, isDeparture: false)
 			}
-			
-		default:
-			break
 		}
 	}
 	
