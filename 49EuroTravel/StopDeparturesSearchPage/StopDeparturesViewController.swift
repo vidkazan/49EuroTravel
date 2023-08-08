@@ -50,6 +50,7 @@ class SearchLocationViewController : UIViewController, SearchViewDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.hideKeyboardWhenTappedAround()
 		self.searchFieldFrom.delegate = self
 		self.searchFieldTo.delegate = self
 		setupUI()
@@ -121,5 +122,17 @@ extension SearchLocationViewController {
 		searchFieldTo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45).isActive = true
 		searchFieldTo.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
 		searchFieldTo.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+	}
+}
+
+extension SearchLocationViewController {
+	func hideKeyboardWhenTappedAround() {
+		let tap = UITapGestureRecognizer(target: self, action: #selector(SearchLocationViewController.dismissKeyboard))
+		tap.cancelsTouchesInView = false
+		
+	}
+	
+	@objc func dismissKeyboard() {
+		view.endEditing(true)
 	}
 }

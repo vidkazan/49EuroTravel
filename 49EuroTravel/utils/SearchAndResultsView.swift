@@ -59,6 +59,7 @@ class SearchAndResultsView: UIView {
 		self.name.text = text
 		self.resultsView.removeArrangedSubviews()
 		self.name.selectedTextRange = nil
+		self.name.endEditing(true)
 	}
 	
 	func setupStackView(){
