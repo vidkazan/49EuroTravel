@@ -60,6 +60,7 @@ enum SearchControllerStates {
 
 class SearchLocationViewControllerViewModel {
 	var journeySearchData = JourneySearchData()
+	var journeysData : JourneysContainer?
 	var onStateChange : ((SearchControllerStates) -> Void)?
 	var previousSearchLineString = ""
 	
@@ -99,7 +100,7 @@ class SearchLocationViewControllerViewModel {
 		if journeySearchData.updateData(type: type, stop: stop) == false {
 			return
 		}
-		print("wohooo")
+		self.fetchJourneys()
 	}
 
 //	func fetchDepartures(){
@@ -124,31 +125,34 @@ class SearchLocationViewControllerViewModel {
 //		}
 //	}
 	
-	
-//	func fetchJourneys(){
-//		var query : [URLQueryItem] = []
-//		query = Query.getQueryItems(methods: [
-//			Query.duration(minutes: 20),
-//			Query.national(icTrains: false),
-//			Query.nationalExpress(iceTrains: false),
-//			Query.pretty(pretyIntend: false),
-//			Query.remarks(showRemarks: true),
-//			Query.subway(uBahn: false),
-//			Query.taxi(taxi: false),
-//			Query.bus(bus: false)
-//		])
-//		ApiService.fetch(Departures.self,query: query, type: ApiService.Requests.stopDepartures(stopId: Constants.stopIdNeuss),requestGroupId: "") { [self] result in
-//			switch result {
-//			case .success(let res) :
-//				self.searchUsersData = res.departures
-//			case .failure(let error) :
-//				self.state = .onError(error: error, indexPath: nil)
-//			}
-//		}
-//	}
 }
 
 extension SearchLocationViewControllerViewModel {
+	private	func fetchJourneys(){
+			var query : [URLQueryItem] = []
+			query = Query.getQueryItems(methods: [
+				Query.departureStop(departureStopId: self.journeySearchData.departure?.stop.id),
+				Query.arrivalStop(arrivalStopId: self.journeySearchData.arrival?.stop.id)
+//				Query.duration(minutes: 20),
+//				Query.national(icTrains: false),
+//				Query.nationalExpress(iceTrains: false),
+//				Query.pretty(pretyIntend: false),
+//				Query.remarks(showRemarks: true),
+//				Query.subway(uBahn: false),
+//				Query.taxi(taxi: false),
+//				Query.bus(bus: false)
+			])
+		ApiService.fetch(JourneysContainer.self,query: query, type: ApiService.Requests.journeys,requestGroupId: "") { [self] result in
+				switch result {
+				case .success(let res) :
+					print(res)
+					self.journeysData = res
+				case .failure(let error) :
+					self.state = .onError(error: error, indexPath: nil)
+				}
+			}
+		}
+	
 	private func fetchLocations(text : String?, isDeparture : Bool){
 		guard let text = text else { return }
 		if text.count < 2 { return }

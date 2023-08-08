@@ -1,108 +1,22 @@
 {
-	"earlierRef": null,
-	"laterRef": "3|OF|MT#14#349817#349817#350337#350337#0#0#885#349745#3#0#26#0#0#-2147483648#1#2|PDH#f5ba8c0cccd4ac227b05367a0f6a21c8|RD#8082023|RT#210559|US#0|RS#INIT",
-	"journeys": [
-		{
-			"type": "journey",
-			"legs": [
-				{
-					"origin": {
-						"type": "stop",
-						"id": "8000274",
-						"name": "Neuss Hbf",
-						"location": {
-							"type": "location",
-							"id": "8000274",
-							"latitude": 51.204373,
-							"longitude": 6.684415
-						},
-						"products": {
-							"nationalExpress": true,
-							"national": false,
-							"regionalExpress": true,
-							"regional": true,
-							"suburban": true,
-							"bus": true,
-							"ferry": false,
-							"subway": true,
-							"tram": true,
-							"taxi": true
-						}
-					},
-					"destination": {
-						"type": "stop",
-						"id": "8000036",
-						"name": "Bielefeld Hbf",
-						"location": {
-							"type": "location",
-							"id": "8000036",
-							"latitude": 52.029421,
-							"longitude": 8.532777
-						},
-						"products": {
-							"nationalExpress": true,
-							"national": true,
-							"regionalExpress": true,
-							"regional": true,
-							"suburban": false,
-							"bus": true,
-							"ferry": false,
-							"subway": false,
-							"tram": true,
-							"taxi": false
-						}
-					},
-					"departure": "2023-08-08T21:36:00+02:00",
-					"plannedDeparture": "2023-08-08T21:36:00+02:00",
-					"departureDelay": 0,
-					"arrival": "2023-08-09T00:01:00+02:00",
-					"plannedArrival": "2023-08-09T00:01:00+02:00",
-					"arrivalDelay": 0,
-					"reachable": true,
-					"tripId": "1|296402|0|80|8082023",
-					"line": {
-						"type": "line",
-						"id": "re-6",
-						"fahrtNr": "89739",
-						"name": "RE 6",
-						"public": true,
-						"adminCode": "NXRE__",
-						"productName": "RE",
-						"mode": "train",
-						"product": "regional",
-						"operator": {
-							"type": "operator",
-							"id": "national-express",
-							"name": "National Express"
-						},
-						"additionalName": "RE 6"
-					},
-					"direction": "Bielefeld Hbf",
-					"currentLocation": {
-						"type": "location",
-						"latitude": 50.964469,
-						"longitude": 6.942153
-					},
-					"arrivalPlatform": "2",
-					"plannedArrivalPlatform": "2",
-					"arrivalPrognosisType": null,
-					"departurePlatform": "1",
-					"plannedDeparturePlatform": "1",
-					"departurePrognosisType": "prognosed",
-					"remarks": [
-						{
-							"text": "Behindertengerechtes Fahrzeug",
-							"type": "hint",
-							"code": "barrier-free-vehicle",
-							"summary": "barrier-free vehicle"
-						}
-					]
-				}
-			],
-			"refreshToken": "T$A=1@O=Neuss Hbf@L=8000274@a=128@$A=1@O=Bielefeld Hbf@L=8000036@a=128@$202308082136$202308090001$RE 89739$$3$$$$$$§T$A=1@O=Bielefeld Hbf@L=8000036@a=128@$A=1@O=Hannover Hbf@L=8000152@a=128@$202308090424$202308090550$WFB95821$$1$$$$$$§T$A=1@O=Hannover Hbf@L=8000152@a=128@$A=1@O=Wolfsburg Hbf@L=8006552@a=128@$202308090605$202308090657$ENO83087$$1$$$$$$",
-			"remarks": [],
-			"price": null
-		}
-	],
-	"realtimeDataUpdatedAt": 1691521679
+	"departure": "2023-08-08T21:36:00+02:00",
+	"plannedDeparture": "2023-08-08T21:36:00+02:00",
+	"departureDelay": 0,
+	"arrival": "2023-08-09T00:01:00+02:00",
+	"plannedArrival": "2023-08-09T00:01:00+02:00",
+	"arrivalDelay": 0,
+	"reachable": true,
+	"tripId": "1|296402|0|80|8082023",
+	"direction": "Bielefeld Hbf",
+	"currentLocation": {
+		"type": "location",
+		"latitude": 50.964469,
+		"longitude": 6.942153
+	},
+	"arrivalPlatform": "2",
+	"plannedArrivalPlatform": "2",
+	"arrivalPrognosisType": null,
+	"departurePlatform": "1",
+	"plannedDeparturePlatform": "1",
+	"departurePrognosisType": "prognosed",
 }

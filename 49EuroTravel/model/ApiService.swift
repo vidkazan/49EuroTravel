@@ -16,6 +16,7 @@ class ApiService  {
 	private static var fetchLobbyDeque = Deque<((type : String, query : String), function : (()->Void))>()
 	
 	enum Requests {
+		case journeys
 		case locations(name : String)
 		case stopDepartures(stopId : Int)
 		case customGet(path : String)
@@ -28,6 +29,8 @@ class ApiService  {
 				return "stopDepartures"
 			case .customGet:
 				return "customGet"
+			case .journeys:
+				return "journeys"
 			}
 		}
 		
@@ -39,19 +42,21 @@ class ApiService  {
 				return 1
 			case .locations:
 				return 2
+			case .journeys:
+				return 3
 			}
 		}
 		
 		var method : String {
 			switch self {
-			case .stopDepartures, .locations, .customGet:
+			case .stopDepartures, .locations, .customGet, .journeys:
 				return "GET"
 			}
 		}
 		
 		var headers : [(value : String, key : String)] {
 			switch self {
-			case .stopDepartures,.customGet, .locations:
+			case .stopDepartures,.customGet, .locations, .journeys:
 				return []
 			}
 		}
@@ -60,6 +65,8 @@ class ApiService  {
 			switch self {
 			case .stopDepartures(let stopId):
 				return Constants.apiData.urlPathStops + String(stopId) + Constants.apiData.urlPathDepartures
+			case .journeys:
+				return Constants.apiData.urlPathJourneys
 			case .locations:
 				return Constants.apiData.urlPathLocations
 			case .customGet(let path):
@@ -69,7 +76,7 @@ class ApiService  {
 		
 		func getRequest(urlEndPoint : URL) -> URLRequest {
 			switch self {
-			case .stopDepartures, .customGet, .locations:
+			case .stopDepartures, .customGet, .locations,.journeys:
 				var req = URLRequest(url : urlEndPoint)
 				req.httpMethod = self.method
 				for header in self.headers {
@@ -123,7 +130,7 @@ class ApiService  {
 					while !fetchLobbyDeque.isEmpty {
 						let task = self.fetchLobbyDeque.popFirst()
 						switch type {
-						case .stopDepartures, .locations:
+						case .stopDepartures, .locations,.journeys:
 							if let t = set[type.index].1 {
 								prints("previous is cancelled")
 								t.cancel()
@@ -176,7 +183,7 @@ class ApiService  {
 		
 		let url : URL? = {
 			switch type {
-			case .stopDepartures, .locations:
+			case .stopDepartures, .locations,.journeys:
 				var components = URLComponents()
 				components.path = type.urlString
 				components.host = Constants.apiData.urlBase
@@ -247,7 +254,7 @@ class ApiService  {
 					return
 				}
 				switch type {
-				case .stopDepartures, .locations:
+				case .stopDepartures, .locations,.journeys:
 					let decoder = JSONDecoder()
 					do {
 						let decodedData = try decoder.decode(T.self, from: data)
@@ -269,7 +276,7 @@ class ApiService  {
 		}
 		
 		switch type {
-		case .stopDepartures, .locations:
+		case .stopDepartures, .locations,.journeys:
 			set[type.index].1 = task
 		case .customGet:
 			break

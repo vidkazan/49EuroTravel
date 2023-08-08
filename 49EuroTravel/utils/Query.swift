@@ -49,6 +49,8 @@ enum Query{
 	case tram(tram: Bool)
 	case taxi(taxi : Bool)
 	case pretty(pretyIntend: Bool)
+	case departureStop(departureStopId : String?)
+	case arrivalStop(arrivalStopId : String?)
 	
 	func getQueryMethod() -> URLQueryItem {
 		switch self {
@@ -130,6 +132,14 @@ enum Query{
 			return URLQueryItem(
 				name: "pretty",
 				value: String(prettyIntend))
+		case .departureStop(let departureStopId):
+			return URLQueryItem(
+				name: "from",
+				value: departureStopId)
+		case .arrivalStop(let arrivalStopId):
+			return URLQueryItem(
+				name: "to",
+				value: arrivalStopId)
 		}
 	}
 	static func getQueryItems(methods : [Query]) -> [URLQueryItem] {
