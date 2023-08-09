@@ -17,7 +17,7 @@ class SearchLocationViewController : UIViewController {
 		view.selectedSegmentIndex = 0
 		return view
 	}()
-	var journeyView = ResultJourneysView()
+	var resultJourneysView = ResultJourneysView()
 
 	init(_ viewModel: SearchLocationViewControllerViewModel = SearchLocationViewControllerViewModel() ) {
 		self.viewModel = viewModel
@@ -59,6 +59,7 @@ class SearchLocationViewController : UIViewController {
 						isNotFound: false
 					)
 				case .onNewDataJourney:
+					self?.resultJourneysView.configure(data: self?.viewModel.resultJourneysViewDataSourse)
 						break
 				case .onError(error: let error, _: _):
 					self?.searchFieldFrom.setStopLoading(view: Constants.locationIcon)
@@ -120,7 +121,7 @@ extension SearchLocationViewController {
 		self.searchFieldTo.backgroundColor = Constants.Gray49
 		self.searchFieldFrom.backgroundColor = Constants.Gray49
 		
-		view.addSubview(journeyView)
+		view.addSubview(resultJourneysView)
 		view.addSubview(timeControl)
 		view.addSubview(searchFieldTo)
 		view.addSubview(searchFieldFrom)
@@ -141,11 +142,11 @@ extension SearchLocationViewController {
 		timeControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
 		timeControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
 		
-		journeyView.translatesAutoresizingMaskIntoConstraints = false
-		journeyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 115).isActive = true
-		journeyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
-		journeyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
-		journeyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		resultJourneysView.translatesAutoresizingMaskIntoConstraints = false
+		resultJourneysView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 115).isActive = true
+		resultJourneysView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
+		resultJourneysView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
+		resultJourneysView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 	}
 }
 

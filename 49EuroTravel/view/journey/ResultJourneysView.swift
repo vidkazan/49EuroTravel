@@ -17,6 +17,11 @@ class ResultJourneysView: UIView {
 		self.layer.cornerRadius = Constants.CornerRadius.small
 		setupUI()
 	}
+	func configure(data: ResultJourneyViewDataSourse?){
+		guard let data = data else { return }
+		self.timeline.configure(data: data.timeline)
+	}
+	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
