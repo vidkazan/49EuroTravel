@@ -16,6 +16,7 @@ extension SearchLocationViewControllerViewModel {
 //				Query.duration(minutes: 20),
 				Query.national(icTrains: false),
 				Query.nationalExpress(iceTrains: false),
+				Query.regionalExpress(reTrains: false),
 				Query.pretty(pretyIntend: false),
 				Query.remarks(showRemarks: true),
 				Query.subway(uBahn: true),
@@ -25,7 +26,6 @@ extension SearchLocationViewControllerViewModel {
 		ApiService.fetch(JourneysContainer.self,query: query, type: ApiService.Requests.journeys,requestGroupId: "") { [self] result in
 				switch result {
 				case .success(let res) :
-					print(res)
 					self.journeysData = res
 				case .failure(let error) :
 					self.state = .onError(error: error, indexPath: nil)

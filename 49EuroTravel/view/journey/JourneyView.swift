@@ -8,6 +8,7 @@
 import UIKit
 
 class JourneyView: UIView {
+	var workingViews : [UIView] = []
 	let bg : UIView = {
 		let view = UIView()
 		view.backgroundColor = .systemGray4
@@ -19,10 +20,17 @@ class JourneyView: UIView {
 		self.layer.cornerRadius = Constants.CornerRadius.tiny
 	}
 	func configure(data: JourneyViewDataSourse?){
-		guard let data = data  else { return }
+		
+		guard let data = data  else {
+			for view in workingViews {
+				view.removeFromSuperview()
+			}
+			return
+		}
 		setupUI()
 		for leg in data.legs {
 			let leg0 = LegView(name: leg.name, color: .darkGray)
+			workingViews.append(leg0)
 			self.addSubview(leg0)
 			leg0.translatesAutoresizingMaskIntoConstraints = false
 			leg0.topAnchor.constraint(equalTo: self.topAnchor,constant: self.bounds.height * leg.legTopPosition).isActive = true
@@ -37,7 +45,6 @@ class JourneyView: UIView {
 	
 	func setupUI(){
 		self.addSubview(bg)
-		
 		bg.translatesAutoresizingMaskIntoConstraints = false
 		bg.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
 		bg.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

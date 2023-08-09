@@ -85,6 +85,7 @@ class SearchLocationViewControllerViewModel {
 	}
 	var journeysData : JourneysContainer? {
 		didSet {
+			self.resultJourneysViewDataSourse = nil
 			DispatchQueue.main.async {
 				self.constructJourneyData()
 			}

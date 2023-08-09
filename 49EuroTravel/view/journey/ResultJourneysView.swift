@@ -18,7 +18,11 @@ class ResultJourneysView: UIView {
 		setupUI()
 	}
 	func configure(data: ResultJourneyViewDataSourse?){
-		guard let data = data else { return }
+		guard let data = data else {
+			self.timeline.configure(data: nil)
+			self.journey0.configure(data: nil)
+			return
+		}
 		self.timeline.configure(data: data.timeline)
 		self.journey0.configure(data: data.journeys[0])
 	}
@@ -39,8 +43,8 @@ class ResultJourneysView: UIView {
 		timeline.widthAnchor.constraint(equalToConstant: 40).isActive = true
 		
 		journey0.translatesAutoresizingMaskIntoConstraints = false
-		journey0.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-		journey0.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2).isActive = true
+		journey0.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+		journey0.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 		journey0.leadingAnchor.constraint(equalTo: timeline.trailingAnchor, constant: 5).isActive = true
 		journey0.widthAnchor.constraint(equalToConstant: 60).isActive = true
 		

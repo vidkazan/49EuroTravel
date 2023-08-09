@@ -12,15 +12,14 @@ class LegView: UIView {
 		let l = UILabel()
 		l.textColor = .white
 		l.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
-		l.numberOfLines = 2
-//		l.lineBreakMode = .
+		l.numberOfLines = 1
 		return l
 	}()
 	init(name : String, color : UIColor) {
 		super.init(frame: .zero)
 		self.label.text = name
 		self.backgroundColor = color
-		self.layer.borderWidth = 1
+		self.layer.borderWidth = 0.5
 		self.layer.borderColor = UIColor.black.cgColor
 		self.layer.cornerRadius = Constants.CornerRadius.tiny
 		setupUI()

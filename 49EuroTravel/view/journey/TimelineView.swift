@@ -61,15 +61,22 @@ class TimeLabelView: UIView {
 }
 
 class TimelineView: UIView {
+	var workingViews : [UIView] = []
 	init() {
 		super.init(frame: .zero)
 		self.backgroundColor = .systemGray5
 		self.layer.cornerRadius = Constants.CornerRadius.tiny
 	}
 	func configure(data: TimelineViewDataSourse?){
-		guard let data = data else { return }
+		guard let data = data else {
+			for view in workingViews {
+				view.removeFromSuperview()
+			}
+			return
+		}
 		for labelData in data.timeLabels {
 			let label = TimeLabelView(text: labelData.text)
+			workingViews.append(label)
 			self.addSubview(label)
 			label.translatesAutoresizingMaskIntoConstraints = false
 			label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true

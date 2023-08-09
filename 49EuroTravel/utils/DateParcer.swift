@@ -74,7 +74,7 @@ class DateParcer {
 		// Convert the Date object to a time string
 		let timeString = dateFormatter.string(from: date)
 
-		print("Current time: \(timeString)")
+//		print("Current time: \(timeString)")
 		return timeString
 	}
 }
