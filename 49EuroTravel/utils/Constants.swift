@@ -21,6 +21,7 @@ struct Constants {
 	struct CornerRadius {
 		static let standart = UIScreen.main.bounds.width/35
 		static let small = UIScreen.main.bounds.width/40
+		static let tiny = UIScreen.main.bounds.width/50
 	}
 	
 	static public let cellWidth = UIScreen.main.bounds.width - UIScreen.main.bounds.width/15

@@ -63,6 +63,10 @@ class SearchView: UIView {
 		setupUI()
 	}
 	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 	func setupStackView(){
 		resultsView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 		resultsView.layer.cornerRadius = Constants.CornerRadius.small
@@ -91,10 +95,6 @@ class SearchView: UIView {
 		if let image = image {
 			self.name.rightView = image
 		}
-	}
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
 	}
 	
 	func setupUI(){

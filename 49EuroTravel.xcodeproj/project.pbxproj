@@ -16,6 +16,7 @@
 		7D5FCE892A8119CC0051A3AF /* SearchAndResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */; };
 		7D5FCE8B2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */; };
 		7D5FCE8D2A8138BB0051A3AF /* UILabel+TextConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */; };
+		7D7387042A83C8F800ABFFFB /* JourneysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7387032A83C8F800ABFFFB /* JourneysViewModel.swift */; };
 		7DC4E8532A0521150053ED3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4E8522A0521150053ED3E /* AppDelegate.swift */; };
 		7DC4E8552A0521150053ED3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4E8542A0521150053ED3E /* SceneDelegate.swift */; };
 		7DC4E8572A0521150053ED3E /* StopDeparturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4E8562A0521150053ED3E /* StopDeparturesViewController.swift */; };
@@ -29,6 +30,12 @@
 		7DC4E88D2A0525BA0053ED3E /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4E88C2A0525BA0053ED3E /* DequeModule */; };
 		7DC4E88F2A0525BA0053ED3E /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4E88E2A0525BA0053ED3E /* OrderedCollections */; };
 		7DC4E8912A05260D0053ED3E /* Prints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4E8902A05260D0053ED3E /* Prints.swift */; };
+		7DF88ABB2A83AB2800BBB3F3 /* ResultJourneysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88ABA2A83AB2800BBB3F3 /* ResultJourneysView.swift */; };
+		7DF88ABE2A83AD2300BBB3F3 /* LegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88ABD2A83AD2300BBB3F3 /* LegView.swift */; };
+		7DF88AC02A83AD3100BBB3F3 /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88ABF2A83AD3100BBB3F3 /* JourneyView.swift */; };
+		7DF88AC22A83ADA800BBB3F3 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88AC12A83ADA800BBB3F3 /* TimelineView.swift */; };
+		7DF88AC42A83ADB800BBB3F3 /* CurrentTimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88AC32A83ADB800BBB3F3 /* CurrentTimeLineView.swift */; };
+		7DF88AC62A83B55F00BBB3F3 /* ChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88AC52A83B55F00BBB3F3 /* ChangeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +65,7 @@
 		7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndResultsView.swift; sourceTree = "<group>"; };
 		7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveSubviews.swift"; sourceTree = "<group>"; };
 		7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+TextConstructor.swift"; sourceTree = "<group>"; };
+		7D7387032A83C8F800ABFFFB /* JourneysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneysViewModel.swift; sourceTree = "<group>"; };
 		7D8D1F622A82DADC00DC3351 /* Journey.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Journey.geojson; sourceTree = "<group>"; };
 		7DC4E84F2A0521150053ED3E /* 49EuroTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 49EuroTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC4E8522A0521150053ED3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +80,12 @@
 		7DC4E8852A0524430053ED3E /* ApiServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceErrors.swift; sourceTree = "<group>"; };
 		7DC4E8872A05249D0053ED3E /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		7DC4E8902A05260D0053ED3E /* Prints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prints.swift; sourceTree = "<group>"; };
+		7DF88ABA2A83AB2800BBB3F3 /* ResultJourneysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultJourneysView.swift; sourceTree = "<group>"; };
+		7DF88ABD2A83AD2300BBB3F3 /* LegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegView.swift; sourceTree = "<group>"; };
+		7DF88ABF2A83AD3100BBB3F3 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
+		7DF88AC12A83ADA800BBB3F3 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		7DF88AC32A83ADB800BBB3F3 /* CurrentTimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTimeLineView.swift; sourceTree = "<group>"; };
+		7DF88AC52A83B55F00BBB3F3 /* ChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +121,7 @@
 			children = (
 				7DC4E8562A0521150053ED3E /* StopDeparturesViewController.swift */,
 				7D0906922A0544DB008074C1 /* ViewModel.swift */,
+				7D7387032A83C8F800ABFFFB /* JourneysViewModel.swift */,
 			);
 			path = StopDeparturesSearchPage;
 			sourceTree = "<group>";
@@ -186,6 +201,7 @@
 		7DF88AB82A83AA2B00BBB3F3 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				7DF88ABC2A83ACEC00BBB3F3 /* journey */,
 				7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */,
 				7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */,
 				7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */,
@@ -201,6 +217,19 @@
 				7DC4E8872A05249D0053ED3E /* ApiService.swift */,
 			);
 			path = "network layer";
+			sourceTree = "<group>";
+		};
+		7DF88ABC2A83ACEC00BBB3F3 /* journey */ = {
+			isa = PBXGroup;
+			children = (
+				7DF88ABA2A83AB2800BBB3F3 /* ResultJourneysView.swift */,
+				7DF88ABD2A83AD2300BBB3F3 /* LegView.swift */,
+				7DF88ABF2A83AD3100BBB3F3 /* JourneyView.swift */,
+				7DF88AC12A83ADA800BBB3F3 /* TimelineView.swift */,
+				7DF88AC32A83ADB800BBB3F3 /* CurrentTimeLineView.swift */,
+				7DF88AC52A83B55F00BBB3F3 /* ChangeView.swift */,
+			);
+			path = journey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,15 +371,22 @@
 				7D0906932A0544DB008074C1 /* ViewModel.swift in Sources */,
 				7D5FCE8B2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift in Sources */,
 				7DC4E8912A05260D0053ED3E /* Prints.swift in Sources */,
+				7DF88AC22A83ADA800BBB3F3 /* TimelineView.swift in Sources */,
 				7DC4E8572A0521150053ED3E /* StopDeparturesViewController.swift in Sources */,
 				7D09068E2A05348E008074C1 /* DateParcer.swift in Sources */,
+				7DF88AC42A83ADB800BBB3F3 /* CurrentTimeLineView.swift in Sources */,
 				7D09068A2A05282C008074C1 /* Constants.swift in Sources */,
+				7DF88AC62A83B55F00BBB3F3 /* ChangeView.swift in Sources */,
 				7DC4E8862A0524430053ED3E /* ApiServiceErrors.swift in Sources */,
 				7D0906902A0534A5008074C1 /* Query.swift in Sources */,
 				7DC4E8882A05249D0053ED3E /* ApiService.swift in Sources */,
 				7DC4E8532A0521150053ED3E /* AppDelegate.swift in Sources */,
+				7DF88AC02A83AD3100BBB3F3 /* JourneyView.swift in Sources */,
 				7DC4E8552A0521150053ED3E /* SceneDelegate.swift in Sources */,
 				7D5FCE892A8119CC0051A3AF /* SearchAndResultsView.swift in Sources */,
+				7DF88ABE2A83AD2300BBB3F3 /* LegView.swift in Sources */,
+				7D7387042A83C8F800ABFFFB /* JourneysViewModel.swift in Sources */,
+				7DF88ABB2A83AB2800BBB3F3 /* ResultJourneysView.swift in Sources */,
 				7D10F3072A0671990077B877 /* DelayReasonCodesList.swift in Sources */,
 				7D5FCE8D2A8138BB0051A3AF /* UILabel+TextConstructor.swift in Sources */,
 				7DC4E8832A0523C80053ED3E /* DTO.swift in Sources */,

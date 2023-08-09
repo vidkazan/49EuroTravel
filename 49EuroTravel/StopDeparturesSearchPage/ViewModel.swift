@@ -21,7 +21,7 @@ struct JourneySearchData {
 	var departure : SearchLocationData?
 	var arrival : SearchLocationData?
 	
-	mutating func updateData(type: LocationDirectionType, stop : Stop) -> Bool {
+	mutating func updateSearchData(type: LocationDirectionType, stop : Stop) -> Bool {
 		switch type {
 		case .departure:
 			self.departure =  SearchLocationData(type: .departure, stop: stop)
@@ -62,6 +62,7 @@ enum SearchControllerStates {
 }
 
 class SearchLocationViewControllerViewModel {
+	
 	var journeySearchData = JourneySearchData()
 	var onStateChange : ((SearchControllerStates) -> Void)?
 	var previousSearchLineString = ""
@@ -84,6 +85,7 @@ class SearchLocationViewControllerViewModel {
 	}
 	var journeysData : JourneysContainer? {
 		didSet {
+			
 			self.state = .onNewDataJourney
 		}
 	}
@@ -104,34 +106,10 @@ class SearchLocationViewControllerViewModel {
 	}
 	
 	func updateSearchData(stop : Stop, type : LocationDirectionType){
-		if journeySearchData.updateData(type: type, stop: stop) == false {
-			return
+		if journeySearchData.updateSearchData(type: type, stop: stop) == true {
+			self.fetchJourneys()
 		}
-		self.fetchJourneys()
 	}
-
-//	func fetchDepartures(){
-//		var query : [URLQueryItem] = []
-//		query = Query.getQueryItems(methods: [
-//			Query.duration(minutes: 20),
-//			Query.national(icTrains: false),
-//			Query.nationalExpress(iceTrains: false),
-//			Query.pretty(pretyIntend: false),
-//			Query.remarks(showRemarks: true),
-//			Query.subway(uBahn: false),
-//			Query.taxi(taxi: false),
-//			Query.bus(bus: false)
-//		])
-//		ApiService.fetch(Departures.self,query: query, type: ApiService.Requests.stopDepartures(stopId: Constants.stopIdNeuss),requestGroupId: "") { [self] result in
-//			switch result {
-//			case .success(let res) :
-//				self.searchUsersData = res.departures
-//			case .failure(let error) :
-//				self.state = .onError(error: error, indexPath: nil)
-// 			}
-//		}
-//	}
-	
 }
 
 extension SearchLocationViewControllerViewModel {
@@ -182,4 +160,26 @@ extension SearchLocationViewControllerViewModel {
 			}
 		}
 	}
+	
+	//	func fetchDepartures(){
+	//		var query : [URLQueryItem] = []
+	//		query = Query.getQueryItems(methods: [
+	//			Query.duration(minutes: 20),
+	//			Query.national(icTrains: false),
+	//			Query.nationalExpress(iceTrains: false),
+	//			Query.pretty(pretyIntend: false),
+	//			Query.remarks(showRemarks: true),
+	//			Query.subway(uBahn: false),
+	//			Query.taxi(taxi: false),
+	//			Query.bus(bus: false)
+	//		])
+	//		ApiService.fetch(Departures.self,query: query, type: ApiService.Requests.stopDepartures(stopId: Constants.stopIdNeuss),requestGroupId: "") { [self] result in
+	//			switch result {
+	//			case .success(let res) :
+	//				self.searchUsersData = res.departures
+	//			case .failure(let error) :
+	//				self.state = .onError(error: error, indexPath: nil)
+	// 			}
+	//		}
+	//	}
 }

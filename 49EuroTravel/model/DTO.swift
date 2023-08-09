@@ -10,33 +10,36 @@ import Foundation
 // /journeys
 
 struct Leg : Decodable {
-	let origin : Stop?
-	let destination : Stop?
-	let line : Line?
-	let remarks : [Remark]?
-	let departure, plannedDeparture,arrival, plannedArrival: String?
-	let departureDelay,arrivalDelay: Int?
-	let reachable: Bool?
-	let tripId, direction: String?
-//	let currentLocation: CurrentLocation
-	let arrivalPlatform, plannedArrivalPlatform: String?
-	let arrivalPrognosisType: String?
-	let departurePlatform, plannedDeparturePlatform, departurePrognosisType: String?
+//	let origin : Stop?
+//	let destination : Stop?
+//	let line : Line?
+//	let remarks : [Remark]?
+	let departure: String?
+//	let plannedDeparture: String?
+//	let arrival: String?
+	let plannedArrival: String?
+//	let departureDelay,arrivalDelay: Int?
+//	let reachable: Bool?
+//	let tripId, direction: String?
+////	let currentLocation: CurrentLocation
+//	let arrivalPlatform, plannedArrivalPlatform: String?
+//	let arrivalPrognosisType: String?
+//	let departurePlatform, plannedDeparturePlatform, departurePrognosisType: String?
 }
 
 struct Journey : Decodable {
-	let type : String?
-	let legs : [Leg]
-	let refreshToken : String?
-	let remarks : [Remark]
-//	let price : String?
+//	let type : String?
+	let legs : [Leg]?
+//	let refreshToken : String?
+//	let remarks : [Remark]?
+////	let price : String?
 }
 
 struct JourneysContainer : Decodable {
-	let earlierRef: String?
-	let laterRef: String?
-	let journeys : [Journey]
-	let realtimeDataUpdatedAt: Int64?
+//	let earlierRef: String?
+//	let laterRef: String?
+	let journeys : [Journey]?
+//	let realtimeDataUpdatedAt: Int64?
 }
 
 // /locations
