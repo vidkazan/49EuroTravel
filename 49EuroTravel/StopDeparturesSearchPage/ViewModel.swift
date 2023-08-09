@@ -85,10 +85,17 @@ class SearchLocationViewControllerViewModel {
 	}
 	var journeysData : JourneysContainer? {
 		didSet {
-			
+			DispatchQueue.main.async {
+				self.constructJourneyData()
+			}
+		}
+	}
+	var resultJourneysViewDataSourse : ResultJourneyViewDataSourse? {
+		didSet {
 			self.state = .onNewDataJourney
 		}
 	}
+	
 	
 	init(){
 		self.state = .onStart
@@ -100,7 +107,7 @@ class SearchLocationViewControllerViewModel {
 			prints(text)
 			prints(self.previousSearchLineString)
 			self.state = .onLoading
-			fetchLocations(text: text,isDeparture : isDeparture)
+			self.fetchLocations(text: text,isDeparture : isDeparture)
 		}
 		self.previousSearchLineString = text
 	}
@@ -112,74 +119,3 @@ class SearchLocationViewControllerViewModel {
 	}
 }
 
-extension SearchLocationViewControllerViewModel {
-	private	func fetchJourneys(){
-			var query : [URLQueryItem] = []
-			query = Query.getQueryItems(methods: [
-				Query.departureStop(departureStopId: self.journeySearchData.departure?.stop.id),
-				Query.arrivalStop(arrivalStopId: self.journeySearchData.arrival?.stop.id)
-//				Query.duration(minutes: 20),
-//				Query.national(icTrains: false),
-//				Query.nationalExpress(iceTrains: false),
-//				Query.pretty(pretyIntend: false),
-//				Query.remarks(showRemarks: true),
-//				Query.subway(uBahn: false),
-//				Query.taxi(taxi: false),
-//				Query.bus(bus: false)
-			])
-		ApiService.fetch(JourneysContainer.self,query: query, type: ApiService.Requests.journeys,requestGroupId: "") { [self] result in
-				switch result {
-				case .success(let res) :
-					print(res)
-					self.journeysData = res
-				case .failure(let error) :
-					self.state = .onError(error: error, indexPath: nil)
-				}
-			}
-		}
-	
-	private func fetchLocations(text : String?, isDeparture : Bool){
-		guard let text = text else { return }
-		if text.count < 2 { return }
-		var query : [URLQueryItem] = []
-		query = Query.getQueryItems(methods: [
-			Query.location(location: text),
-			Query.results(max: 10)
-		])
-		ApiService.fetch([Stop].self,query: query, type: ApiService.Requests.locations(name: text ),requestGroupId: "") { [self] result in
-			switch result {
-			case .success(let res) :
-				switch isDeparture {
-				case true:
-					self.searchLocationDataDeparture = res
-				case false:
-					self.searchLocationDataArrival = res
-				}
-			case .failure(let error) :
-				self.state = .onError(error: error, indexPath: nil)
-			}
-		}
-	}
-	
-	//	func fetchDepartures(){
-	//		var query : [URLQueryItem] = []
-	//		query = Query.getQueryItems(methods: [
-	//			Query.duration(minutes: 20),
-	//			Query.national(icTrains: false),
-	//			Query.nationalExpress(iceTrains: false),
-	//			Query.pretty(pretyIntend: false),
-	//			Query.remarks(showRemarks: true),
-	//			Query.subway(uBahn: false),
-	//			Query.taxi(taxi: false),
-	//			Query.bus(bus: false)
-	//		])
-	//		ApiService.fetch(Departures.self,query: query, type: ApiService.Requests.stopDepartures(stopId: Constants.stopIdNeuss),requestGroupId: "") { [self] result in
-	//			switch result {
-	//			case .success(let res) :
-	//				self.searchUsersData = res.departures
-	//			case .failure(let error) :
-	//				self.state = .onError(error: error, indexPath: nil)
-	// 			}
-	//		}
-	//	}
-}

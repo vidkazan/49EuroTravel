@@ -12,13 +12,13 @@ import Foundation
 struct Leg : Decodable {
 //	let origin : Stop?
 //	let destination : Stop?
-//	let line : Line?
+	let line : Line?
 //	let remarks : [Remark]?
 	let departure: String?
-//	let plannedDeparture: String?
-//	let arrival: String?
+	let plannedDeparture: String?
+	let arrival: String?
 	let plannedArrival: String?
-//	let departureDelay,arrivalDelay: Int?
+	let departureDelay,arrivalDelay: Int?
 //	let reachable: Bool?
 //	let tripId, direction: String?
 ////	let currentLocation: CurrentLocation
@@ -28,7 +28,7 @@ struct Leg : Decodable {
 }
 
 struct Journey : Decodable {
-//	let type : String?
+	let type : String?
 	let legs : [Leg]?
 //	let refreshToken : String?
 //	let remarks : [Remark]?

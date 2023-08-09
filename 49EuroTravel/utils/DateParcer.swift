@@ -8,7 +8,7 @@
 import Foundation
 
 class DateParcer {
-	static private let formatDateAndTime = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+	static private let formatDateAndTime = "yyyyMMdd'T'HHmmssZ"
 	
 	static private let dateFormatter : DateFormatter = {
 		let f = DateFormatter()
@@ -16,9 +16,15 @@ class DateParcer {
 		return f
 	}()
 	
+	static private let ISOdateFormatter : ISO8601DateFormatter = {
+		let f = ISO8601DateFormatter()
+		return f
+	}()
+	
 	static private func parseDate(from dateString : String?) -> Date? {
 		guard let dateString = dateString else { return nil }
-		guard let date = dateFormatter.date(from: dateString) else {return nil}
+		if let date = dateFormatter.date(from: dateString) { return date }
+		guard let date = ISOdateFormatter.date(from: dateString) else { return nil }
 		return date
 	}
 	
@@ -27,6 +33,20 @@ class DateParcer {
 				let date2 = parseDate(from: date2String) else { return nil }
 		let interval = date1.timeIntervalSinceReferenceDate - date2.timeIntervalSinceReferenceDate
 		return Int(abs(interval / 60))
+	}
+	
+	static func getTwoDateIntervalInMinutes(date1 : Date?,date2 : Date?) -> Int? {
+		guard let date1 = date1,
+				let date2 = date2 else { return nil }
+		let interval = date1.timeIntervalSinceReferenceDate - date2.timeIntervalSinceReferenceDate
+		return Int(abs(interval / 60))
+	}
+	
+	static func getTwoDateInterval(date1 : Date?,date2 : Date?) -> Double? {
+		guard let date1 = date1,
+				let date2 = date2 else { return nil }
+		let interval = date1.timeIntervalSinceReferenceDate - date2.timeIntervalSinceReferenceDate
+		return interval
 	}
 	
 	static func getDateFromDateString(dateString : String?) -> Date? {
@@ -45,4 +65,16 @@ class DateParcer {
 		return newDate
 	}
 	
+	static func getTimeStringFromDate(date : Date) -> String {
+		let dateFormatter = DateFormatter()
+
+		// Set the desired time style
+		dateFormatter.dateFormat = "HH:mm"
+
+		// Convert the Date object to a time string
+		let timeString = dateFormatter.string(from: date)
+
+		print("Current time: \(timeString)")
+		return timeString
+	}
 }
