@@ -26,9 +26,11 @@ extension SearchLocationViewControllerViewModel {
 		return cDiff / diffExtended
 	}
 	
+	func constructTimelineData(){
+		
+	}
+	
 	func constructJourneyData(){
-		
-		
 		guard let src = self.journeysData else { return }
 		guard let journeys = src.journeys else { return }
 		guard let firstJourney = journeys.first else { return }
@@ -37,6 +39,9 @@ extension SearchLocationViewControllerViewModel {
 		guard let firstJourneyLastLeg = firstJourneyLegs.last else { return }
 		guard let firstTimestamp = firstJourneyFirstLeg.departure else { return }
 		guard let lastTimestamp = firstJourneyLastLeg.plannedArrival else { return }
+		
+		
+		
 		
 		let time1 = DateParcer.getDateFromDateString(dateString: firstTimestamp)
 		
@@ -59,7 +64,30 @@ extension SearchLocationViewControllerViewModel {
 			)
 		])
 		
-		let res = ResultJourneyViewDataSourse(journeys: [], timeline: tl)
+		var legsDataSourse : [LegViewDataSourse] = []
+		
+		for leg in firstJourneyLegs {
+			let startTS = DateParcer.getDateFromDateString(dateString: leg.plannedDeparture!)
+			let endTS = DateParcer.getDateFromDateString(dateString: leg.plannedArrival!)
+			legsDataSourse.append(LegViewDataSourse(
+				name: leg.line?.name ?? "",
+				legTopPosition: getTimeLabelPosition(
+					firstTS: time1,
+					lastTS: time2,
+					currentTS: startTS
+				) ?? 0,
+				legBottomPosition: getTimeLabelPosition(
+					firstTS: time1,
+					lastTS: time2,
+					currentTS: endTS
+				) ?? 0
+			)
+		)}
+		
+		let journey = JourneyViewDataSourse(legs: legsDataSourse)
+		
+		let res = ResultJourneyViewDataSourse(journeys: [journey], timeline: tl)
+		
 		self.resultJourneysViewDataSourse = res
 	}
 }

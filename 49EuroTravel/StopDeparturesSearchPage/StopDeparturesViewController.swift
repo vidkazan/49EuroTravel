@@ -60,7 +60,6 @@ class SearchLocationViewController : UIViewController {
 					)
 				case .onNewDataJourney:
 					self?.resultJourneysView.configure(data: self?.viewModel.resultJourneysViewDataSourse)
-						break
 				case .onError(error: let error, _: _):
 					self?.searchFieldFrom.setStopLoading(view: Constants.locationIcon)
 					let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)

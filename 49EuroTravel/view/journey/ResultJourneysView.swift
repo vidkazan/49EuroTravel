@@ -8,9 +8,9 @@
 import UIKit
 
 class ResultJourneysView: UIView {
-	let timeline = TimelineView()
-	let journey0 = JourneyView()
-	let currentTimeLine = CurrentTimeLineView()
+	var timeline = TimelineView()
+	var journey0 = JourneyView()
+	var currentTimeLine = CurrentTimeLineView()
 	init() {
 		super.init(frame: .zero)
 		self.backgroundColor = Constants.Gray49
@@ -20,6 +20,7 @@ class ResultJourneysView: UIView {
 	func configure(data: ResultJourneyViewDataSourse?){
 		guard let data = data else { return }
 		self.timeline.configure(data: data.timeline)
+		self.journey0.configure(data: data.journeys[0])
 	}
 	
 	required init?(coder: NSCoder) {
@@ -41,7 +42,7 @@ class ResultJourneysView: UIView {
 		journey0.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
 		journey0.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2).isActive = true
 		journey0.leadingAnchor.constraint(equalTo: timeline.trailingAnchor, constant: 5).isActive = true
-		journey0.widthAnchor.constraint(equalToConstant: 40).isActive = true
+		journey0.widthAnchor.constraint(equalToConstant: 60).isActive = true
 		
 //		currentTimeLine.translatesAutoresizingMaskIntoConstraints = false
 //		currentTimeLine.topAnchor.constraint(equalTo: self.topAnchor, constant: 200).isActive = true

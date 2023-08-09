@@ -12,6 +12,8 @@ class LegView: UIView {
 		let l = UILabel()
 		l.textColor = .white
 		l.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
+		l.numberOfLines = 2
+//		l.lineBreakMode = .
 		return l
 	}()
 	init(name : String, color : UIColor) {
