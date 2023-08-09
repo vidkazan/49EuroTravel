@@ -11,9 +11,7 @@
 		7D09068C2A053458008074C1 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D09068B2A053458008074C1 /* Color.swift */; };
 		7D09068E2A05348E008074C1 /* DateParcer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D09068D2A05348E008074C1 /* DateParcer.swift */; };
 		7D0906902A0534A5008074C1 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D09068F2A0534A5008074C1 /* Query.swift */; };
-		7D0906932A0544DB008074C1 /* oldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0906922A0544DB008074C1 /* oldViewModel.swift */; };
-		7D0906952A055109008074C1 /* DepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0906942A055109008074C1 /* DepartureCell.swift */; };
-		7D0906972A055140008074C1 /* EmptyResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0906962A055140008074C1 /* EmptyResultCell.swift */; };
+		7D0906932A0544DB008074C1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0906922A0544DB008074C1 /* ViewModel.swift */; };
 		7D10F3072A0671990077B877 /* DelayReasonCodesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F3062A0671990077B877 /* DelayReasonCodesList.swift */; };
 		7D5FCE892A8119CC0051A3AF /* SearchAndResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */; };
 		7D5FCE8B2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */; };
@@ -55,9 +53,7 @@
 		7D09068B2A053458008074C1 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		7D09068D2A05348E008074C1 /* DateParcer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParcer.swift; sourceTree = "<group>"; };
 		7D09068F2A0534A5008074C1 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
-		7D0906922A0544DB008074C1 /* oldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oldViewModel.swift; sourceTree = "<group>"; };
-		7D0906942A055109008074C1 /* DepartureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
-		7D0906962A055140008074C1 /* EmptyResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultCell.swift; sourceTree = "<group>"; };
+		7D0906922A0544DB008074C1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7D10F3062A0671990077B877 /* DelayReasonCodesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayReasonCodesList.swift; sourceTree = "<group>"; };
 		7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndResultsView.swift; sourceTree = "<group>"; };
 		7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveSubviews.swift"; sourceTree = "<group>"; };
@@ -110,9 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				7DC4E8562A0521150053ED3E /* StopDeparturesViewController.swift */,
-				7D0906922A0544DB008074C1 /* oldViewModel.swift */,
-				7D0906942A055109008074C1 /* DepartureCell.swift */,
-				7D0906962A055140008074C1 /* EmptyResultCell.swift */,
+				7D0906922A0544DB008074C1 /* ViewModel.swift */,
 			);
 			path = StopDeparturesSearchPage;
 			sourceTree = "<group>";
@@ -140,6 +134,8 @@
 		7DC4E8512A0521150053ED3E /* 49EuroTravel */ = {
 			isa = PBXGroup;
 			children = (
+				7DF88AB92A83AA4800BBB3F3 /* network layer */,
+				7DF88AB82A83AA2B00BBB3F3 /* view */,
 				7D0906912A0543CB008074C1 /* StopDeparturesSearchPage */,
 				7DC4E8922A0526140053ED3E /* utils */,
 				7DC4E8842A0523CD0053ED3E /* model */,
@@ -168,8 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				7DC4E8822A0523C80053ED3E /* DTO.swift */,
-				7DC4E8852A0524430053ED3E /* ApiServiceErrors.swift */,
-				7DC4E8872A05249D0053ED3E /* ApiService.swift */,
 				7D8D1F622A82DADC00DC3351 /* Journey.geojson */,
 			);
 			path = model;
@@ -184,13 +178,29 @@
 				7D0906892A05282C008074C1 /* Constants.swift */,
 				7D09068B2A053458008074C1 /* Color.swift */,
 				7D09068D2A05348E008074C1 /* DateParcer.swift */,
-				7D09068F2A0534A5008074C1 /* Query.swift */,
 				7D10F3062A0671990077B877 /* DelayReasonCodesList.swift */,
-				7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */,
-				7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */,
-				7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		7DF88AB82A83AA2B00BBB3F3 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */,
+				7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */,
+				7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		7DF88AB92A83AA4800BBB3F3 /* network layer */ = {
+			isa = PBXGroup;
+			children = (
+				7D09068F2A0534A5008074C1 /* Query.swift */,
+				7DC4E8852A0524430053ED3E /* ApiServiceErrors.swift */,
+				7DC4E8872A05249D0053ED3E /* ApiService.swift */,
+			);
+			path = "network layer";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,7 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D0906932A0544DB008074C1 /* oldViewModel.swift in Sources */,
+				7D0906932A0544DB008074C1 /* ViewModel.swift in Sources */,
 				7D5FCE8B2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift in Sources */,
 				7DC4E8912A05260D0053ED3E /* Prints.swift in Sources */,
 				7DC4E8572A0521150053ED3E /* StopDeparturesViewController.swift in Sources */,
@@ -339,13 +349,11 @@
 				7D0906902A0534A5008074C1 /* Query.swift in Sources */,
 				7DC4E8882A05249D0053ED3E /* ApiService.swift in Sources */,
 				7DC4E8532A0521150053ED3E /* AppDelegate.swift in Sources */,
-				7D0906952A055109008074C1 /* DepartureCell.swift in Sources */,
 				7DC4E8552A0521150053ED3E /* SceneDelegate.swift in Sources */,
 				7D5FCE892A8119CC0051A3AF /* SearchAndResultsView.swift in Sources */,
 				7D10F3072A0671990077B877 /* DelayReasonCodesList.swift in Sources */,
 				7D5FCE8D2A8138BB0051A3AF /* UILabel+TextConstructor.swift in Sources */,
 				7DC4E8832A0523C80053ED3E /* DTO.swift in Sources */,
-				7D0906972A055140008074C1 /* EmptyResultCell.swift in Sources */,
 				7D09068C2A053458008074C1 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
