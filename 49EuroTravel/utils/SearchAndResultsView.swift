@@ -17,15 +17,14 @@ protocol SearchViewDelegate {
 	func stopCellDidPressed(stop : Stop, type: LocationDirectionType)
 }
 
-class SearchAndResultsView: UIView {
+class SearchView: UIView {
 	var type : LocationDirectionType
 	var stops : [Stop] = []
 	var delegate: SearchViewDelegate?
-	let resultsView : UIStackView = {
+	var resultsView : UIStackView = {
 		let view = UIStackView()
 		view.axis = .vertical
 		view.distribution = .fillEqually
-		view.spacing = 15
 		return view
 	}()
 	let name : UITextField = {
@@ -66,7 +65,9 @@ class SearchAndResultsView: UIView {
 	
 	func setupStackView(){
 		resultsView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+		resultsView.layer.cornerRadius = Constants.CornerRadius.small
 		resultsView.isLayoutMarginsRelativeArrangement = true
+		resultsView.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.92, alpha: 1)
 	}
 	
 	func updateResultView(stops : [Stop], isNotFound : Bool){
@@ -101,19 +102,20 @@ class SearchAndResultsView: UIView {
 		addSubview(resultsView)
 		
 		name.translatesAutoresizingMaskIntoConstraints = false
-		name.topAnchor.constraint(equalTo: self.topAnchor, constant: 7).isActive = true
+		name.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+		name.bottomAnchor.constraint(equalTo: self.topAnchor,constant: 35).isActive = true
 		name.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
 		name.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
 		
 		resultsView.translatesAutoresizingMaskIntoConstraints = false
-		resultsView.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 5).isActive = true
-		resultsView.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -5).isActive = true
+		resultsView.topAnchor.constraint(equalTo: name.bottomAnchor).isActive = true
+		resultsView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 		resultsView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
 		resultsView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
 	}
 }
 
-extension SearchAndResultsView {
+extension SearchView {
 	func setLoading() {
 		let activityIndicator = UIActivityIndicatorView(style: .medium)
 		activityIndicator.color = .gray

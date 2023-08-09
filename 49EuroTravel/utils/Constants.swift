@@ -37,4 +37,6 @@ struct Constants {
 		view.tintColor = .darkGray
 		return view
 	}
+	
+	static let Gray49 = UIColor(hue: 0, saturation: 0, brightness: 0.935, alpha: 1)
 }

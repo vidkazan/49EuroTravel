@@ -40,6 +40,7 @@ enum SearchControllerStates {
 	case onLoading
 	case onNewDataDepartureStop
 	case onNewDataArrivalStop
+	case onNewDataJourney
 	case onError(error : ApiServiceErrors, indexPath : IndexPath?)
 	
 	var description : String {
@@ -54,13 +55,14 @@ enum SearchControllerStates {
 			return "onNewDataArrivalStop"
 		case .onError:
 			return "onError"
+		case .onNewDataJourney:
+			return "onNewDataJourney"
 		}
 	}
 }
 
 class SearchLocationViewControllerViewModel {
 	var journeySearchData = JourneySearchData()
-	var journeysData : JourneysContainer?
 	var onStateChange : ((SearchControllerStates) -> Void)?
 	var previousSearchLineString = ""
 	
@@ -78,6 +80,11 @@ class SearchLocationViewControllerViewModel {
 	var searchLocationDataArrival : [Stop] = []  {
 		didSet {
 			self.state = .onNewDataArrivalStop
+		}
+	}
+	var journeysData : JourneysContainer? {
+		didSet {
+			self.state = .onNewDataJourney
 		}
 	}
 	

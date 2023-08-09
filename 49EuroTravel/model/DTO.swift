@@ -48,8 +48,8 @@ struct Stop : Decodable {
 	let type	: String?
 	let id		: String?
 	let name	: String?
-	let location : Location
-	let products : Products
+	let location : Location?
+	let products : Products?
 }
 
 

@@ -30,9 +30,9 @@ func createLabelByText(text : String?, alert : Bool) -> UIView {
 	
 	view.addSubview(label)
 	label.translatesAutoresizingMaskIntoConstraints = false
-	label.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+	label.topAnchor.constraint(equalTo: view.topAnchor, constant: 5).isActive = true
 	label.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
 	label.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-	label.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+	label.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -5).isActive = true
 	return view
 }
