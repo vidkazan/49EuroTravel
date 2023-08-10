@@ -18,10 +18,8 @@ extension SearchLocationViewControllerViewModel {
 				Query.nationalExpress(iceTrains: false),
 				Query.regionalExpress(reTrains: false),
 				Query.pretty(pretyIntend: false),
-				Query.remarks(showRemarks: true),
-				Query.subway(uBahn: true),
 				Query.taxi(taxi: false),
-				Query.bus(bus: true)
+				Query.remarks(showRemarks: true)
 			])
 		ApiService.fetch(JourneysContainer.self,query: query, type: ApiService.Requests.journeys,requestGroupId: "") { [self] result in
 				switch result {

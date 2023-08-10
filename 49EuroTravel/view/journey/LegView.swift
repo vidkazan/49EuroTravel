@@ -19,9 +19,9 @@ class LegView: UIView {
 		super.init(frame: .zero)
 		self.label.text = name
 		self.backgroundColor = color
-		self.layer.borderWidth = 0.5
+		self.layer.borderWidth = 1
 		self.layer.borderColor = UIColor.black.cgColor
-		self.layer.cornerRadius = Constants.CornerRadius.tiny
+		self.layer.cornerRadius = 5
 		setupUI()
 	}
 	required init?(coder: NSCoder) {
@@ -30,17 +30,8 @@ class LegView: UIView {
 	
 	func setupUI(){
 		self.addSubview(label)
-		
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 		label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
 	}
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

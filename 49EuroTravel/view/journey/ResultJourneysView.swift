@@ -9,7 +9,7 @@ import UIKit
 
 class ResultJourneysView: UIView {
 	var timeline = TimelineView()
-	var journey0 = JourneyView()
+	let journey0 = JourneyView()
 	var currentTimeLine = CurrentTimeLineView()
 	init() {
 		super.init(frame: .zero)
@@ -25,6 +25,9 @@ class ResultJourneysView: UIView {
 		}
 		self.timeline.configure(data: data.timeline)
 		self.journey0.configure(data: data.journeys[0])
+//		for (index,journey) in data.journeys.enumerated() {
+//			
+//		}
 	}
 	
 	required init?(coder: NSCoder) {
@@ -34,6 +37,11 @@ class ResultJourneysView: UIView {
 	func setupUI(){
 		self.addSubview(timeline)
 		self.addSubview(journey0)
+		journey0.translatesAutoresizingMaskIntoConstraints = false
+		journey0.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+		journey0.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+		journey0.leadingAnchor.constraint(equalTo: timeline.trailingAnchor, constant:5) .isActive = true
+		journey0.widthAnchor.constraint(equalToConstant: 60).isActive = true
 //		self.addSubview(currentTimeLine)
 		
 		timeline.translatesAutoresizingMaskIntoConstraints = false
@@ -42,23 +50,9 @@ class ResultJourneysView: UIView {
 		timeline.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 2).isActive = true
 		timeline.widthAnchor.constraint(equalToConstant: 40).isActive = true
 		
-		journey0.translatesAutoresizingMaskIntoConstraints = false
-		journey0.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-		journey0.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-		journey0.leadingAnchor.constraint(equalTo: timeline.trailingAnchor, constant: 5).isActive = true
-		journey0.widthAnchor.constraint(equalToConstant: 60).isActive = true
-		
 //		currentTimeLine.translatesAutoresizingMaskIntoConstraints = false
 //		currentTimeLine.topAnchor.constraint(equalTo: self.topAnchor, constant: 200).isActive = true
 //		currentTimeLine.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 2).isActive = true
 //		currentTimeLine.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2).isActive = true
 	}
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

@@ -25,11 +25,15 @@ class JourneyView: UIView {
 			for view in workingViews {
 				view.removeFromSuperview()
 			}
+			bg.removeFromSuperview()
 			return
 		}
-		setupUI()
+		let topPosition = data.legs[0].legTopPosition
+		self.addSubview(bg)
+		var lastPosition : Double?
 		for leg in data.legs {
-			let leg0 = LegView(name: leg.name, color: .darkGray)
+			let leg0 = LegView(name: leg.name, color: UIColor.CompanionColors.secondary)
+			lastPosition = leg.legBottomPosition
 			workingViews.append(leg0)
 			self.addSubview(leg0)
 			leg0.translatesAutoresizingMaskIntoConstraints = false
@@ -38,18 +42,14 @@ class JourneyView: UIView {
 			leg0.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
 			leg0.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
 		}
+		bg.translatesAutoresizingMaskIntoConstraints = false
+		bg.topAnchor.constraint(equalTo: self.topAnchor,constant: self.bounds.height * topPosition).isActive = true
+		bg.bottomAnchor.constraint(equalTo: self.topAnchor,constant: self.bounds.height * (lastPosition ?? 1)).isActive = true
+		bg.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+		bg.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
 	}
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
-	}
-	
-	func setupUI(){
-		self.addSubview(bg)
-		bg.translatesAutoresizingMaskIntoConstraints = false
-		bg.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-		bg.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-		bg.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-		bg.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
 	}
     /*
     // Only override draw() if you perform custom drawing.

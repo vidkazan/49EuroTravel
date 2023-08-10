@@ -13,12 +13,16 @@
 		7D0906902A0534A5008074C1 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D09068F2A0534A5008074C1 /* Query.swift */; };
 		7D0906932A0544DB008074C1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0906922A0544DB008074C1 /* ViewModel.swift */; };
 		7D10F3072A0671990077B877 /* DelayReasonCodesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F3062A0671990077B877 /* DelayReasonCodesList.swift */; };
-		7D5FCE892A8119CC0051A3AF /* SearchAndResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */; };
+		7D5FCE892A8119CC0051A3AF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE882A8119CC0051A3AF /* SearchView.swift */; };
 		7D5FCE8B2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */; };
 		7D5FCE8D2A8138BB0051A3AF /* UILabel+TextConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */; };
 		7D7387062A83CCEA00ABFFFB /* ViewModel+ConstructJourneyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7387052A83CCEA00ABFFFB /* ViewModel+ConstructJourneyData.swift */; };
 		7D7387082A83CD1900ABFFFB /* ViewModel+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7387072A83CD1900ABFFFB /* ViewModel+Fetch.swift */; };
 		7D73870A2A83D04B00ABFFFB /* ViewDataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7387092A83D04B00ABFFFB /* ViewDataSourse.swift */; };
+		7DB40EA32A842D100046C634 /* DataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB40EA22A842D100046C634 /* DataSourse.swift */; };
+		7DB40EA52A842D750046C634 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB40EA42A842D750046C634 /* States.swift */; };
+		7DB40EA72A842F850046C634 /* StopDeparturesViewController+SetupUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB40EA62A842F850046C634 /* StopDeparturesViewController+SetupUI.swift */; };
+		7DB40EA92A842FB00046C634 /* StopDeparturesViewController+SearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB40EA82A842FB00046C634 /* StopDeparturesViewController+SearchViewDelegate.swift */; };
 		7DC4E8532A0521150053ED3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4E8522A0521150053ED3E /* AppDelegate.swift */; };
 		7DC4E8552A0521150053ED3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4E8542A0521150053ED3E /* SceneDelegate.swift */; };
 		7DC4E8572A0521150053ED3E /* StopDeparturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4E8562A0521150053ED3E /* StopDeparturesViewController.swift */; };
@@ -64,13 +68,17 @@
 		7D09068F2A0534A5008074C1 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		7D0906922A0544DB008074C1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7D10F3062A0671990077B877 /* DelayReasonCodesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayReasonCodesList.swift; sourceTree = "<group>"; };
-		7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndResultsView.swift; sourceTree = "<group>"; };
+		7D5FCE882A8119CC0051A3AF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveSubviews.swift"; sourceTree = "<group>"; };
 		7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+TextConstructor.swift"; sourceTree = "<group>"; };
 		7D7387052A83CCEA00ABFFFB /* ViewModel+ConstructJourneyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModel+ConstructJourneyData.swift"; sourceTree = "<group>"; };
 		7D7387072A83CD1900ABFFFB /* ViewModel+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModel+Fetch.swift"; sourceTree = "<group>"; };
 		7D7387092A83D04B00ABFFFB /* ViewDataSourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDataSourse.swift; sourceTree = "<group>"; };
 		7D8D1F622A82DADC00DC3351 /* Journey.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Journey.geojson; sourceTree = "<group>"; };
+		7DB40EA22A842D100046C634 /* DataSourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourse.swift; sourceTree = "<group>"; };
+		7DB40EA42A842D750046C634 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		7DB40EA62A842F850046C634 /* StopDeparturesViewController+SetupUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopDeparturesViewController+SetupUI.swift"; sourceTree = "<group>"; };
+		7DB40EA82A842FB00046C634 /* StopDeparturesViewController+SearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopDeparturesViewController+SearchViewDelegate.swift"; sourceTree = "<group>"; };
 		7DC4E84F2A0521150053ED3E /* 49EuroTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 49EuroTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC4E8522A0521150053ED3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DC4E8542A0521150053ED3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,12 +131,31 @@
 		7D0906912A0543CB008074C1 /* StopDeparturesSearchPage */ = {
 			isa = PBXGroup;
 			children = (
-				7DC4E8562A0521150053ED3E /* StopDeparturesViewController.swift */,
+				7DB40EAB2A84E77C0046C634 /* VC */,
+				7DB40EAA2A84E76F0046C634 /* VM */,
+			);
+			path = StopDeparturesSearchPage;
+			sourceTree = "<group>";
+		};
+		7DB40EAA2A84E76F0046C634 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				7DB40EA42A842D750046C634 /* States.swift */,
 				7D0906922A0544DB008074C1 /* ViewModel.swift */,
 				7D7387072A83CD1900ABFFFB /* ViewModel+Fetch.swift */,
 				7D7387052A83CCEA00ABFFFB /* ViewModel+ConstructJourneyData.swift */,
 			);
-			path = StopDeparturesSearchPage;
+			path = VM;
+			sourceTree = "<group>";
+		};
+		7DB40EAB2A84E77C0046C634 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4E8562A0521150053ED3E /* StopDeparturesViewController.swift */,
+				7DB40EA62A842F850046C634 /* StopDeparturesViewController+SetupUI.swift */,
+				7DB40EA82A842FB00046C634 /* StopDeparturesViewController+SearchViewDelegate.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		7DC4E8462A0521150053ED3E = {
@@ -186,6 +213,7 @@
 				7DC4E8822A0523C80053ED3E /* DTO.swift */,
 				7D8D1F622A82DADC00DC3351 /* Journey.geojson */,
 				7D7387092A83D04B00ABFFFB /* ViewDataSourse.swift */,
+				7DB40EA22A842D100046C634 /* DataSourse.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -193,6 +221,8 @@
 		7DC4E8922A0526140053ED3E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */,
+				7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */,
 				7DC4E8522A0521150053ED3E /* AppDelegate.swift */,
 				7DC4E8542A0521150053ED3E /* SceneDelegate.swift */,
 				7DC4E8902A05260D0053ED3E /* Prints.swift */,
@@ -208,9 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				7DF88ABC2A83ACEC00BBB3F3 /* journey */,
-				7D5FCE8A2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift */,
-				7D5FCE8C2A8138BB0051A3AF /* UILabel+TextConstructor.swift */,
-				7D5FCE882A8119CC0051A3AF /* SearchAndResultsView.swift */,
+				7D5FCE882A8119CC0051A3AF /* SearchView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -380,23 +408,27 @@
 				7DC4E8912A05260D0053ED3E /* Prints.swift in Sources */,
 				7DF88AC22A83ADA800BBB3F3 /* TimelineView.swift in Sources */,
 				7DC4E8572A0521150053ED3E /* StopDeparturesViewController.swift in Sources */,
+				7DB40EA52A842D750046C634 /* States.swift in Sources */,
 				7D09068E2A05348E008074C1 /* DateParcer.swift in Sources */,
 				7DF88AC42A83ADB800BBB3F3 /* CurrentTimeLineView.swift in Sources */,
 				7D09068A2A05282C008074C1 /* Constants.swift in Sources */,
 				7DF88AC62A83B55F00BBB3F3 /* ChangeView.swift in Sources */,
+				7DB40EA32A842D100046C634 /* DataSourse.swift in Sources */,
 				7DC4E8862A0524430053ED3E /* ApiServiceErrors.swift in Sources */,
 				7D0906902A0534A5008074C1 /* Query.swift in Sources */,
 				7DC4E8882A05249D0053ED3E /* ApiService.swift in Sources */,
 				7DC4E8532A0521150053ED3E /* AppDelegate.swift in Sources */,
 				7D73870A2A83D04B00ABFFFB /* ViewDataSourse.swift in Sources */,
 				7DF88AC02A83AD3100BBB3F3 /* JourneyView.swift in Sources */,
+				7DB40EA92A842FB00046C634 /* StopDeparturesViewController+SearchViewDelegate.swift in Sources */,
 				7DC4E8552A0521150053ED3E /* SceneDelegate.swift in Sources */,
-				7D5FCE892A8119CC0051A3AF /* SearchAndResultsView.swift in Sources */,
+				7D5FCE892A8119CC0051A3AF /* SearchView.swift in Sources */,
 				7D7387082A83CD1900ABFFFB /* ViewModel+Fetch.swift in Sources */,
 				7DF88ABE2A83AD2300BBB3F3 /* LegView.swift in Sources */,
 				7DF88ABB2A83AB2800BBB3F3 /* ResultJourneysView.swift in Sources */,
 				7D10F3072A0671990077B877 /* DelayReasonCodesList.swift in Sources */,
 				7D5FCE8D2A8138BB0051A3AF /* UILabel+TextConstructor.swift in Sources */,
+				7DB40EA72A842F850046C634 /* StopDeparturesViewController+SetupUI.swift in Sources */,
 				7DC4E8832A0523C80053ED3E /* DTO.swift in Sources */,
 				7D09068C2A053458008074C1 /* Color.swift in Sources */,
 			);

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct TimelineTimeLabelDataSourse {
 	let text : String
@@ -20,6 +21,7 @@ struct LegViewDataSourse {
 	let name : String
 	let legTopPosition : Double
 	let legBottomPosition : Double
+	let color : UIColor
 }
 
 struct JourneyViewDataSourse {

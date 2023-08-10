@@ -11,7 +11,7 @@ class TimeLabelView: UIView {
 	let label : UILabel = {
 		let l = UILabel()
 		l.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
-		l.textColor = .darkGray
+		l.textColor = .black
 		return l
 	}()
 	let line : UIView = {
@@ -64,7 +64,6 @@ class TimelineView: UIView {
 	var workingViews : [UIView] = []
 	init() {
 		super.init(frame: .zero)
-		self.backgroundColor = .systemGray5
 		self.layer.cornerRadius = Constants.CornerRadius.tiny
 	}
 	func configure(data: TimelineViewDataSourse?){
