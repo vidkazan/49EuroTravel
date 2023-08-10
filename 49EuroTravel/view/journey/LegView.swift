@@ -19,9 +19,9 @@ class LegView: UIView {
 		super.init(frame: .zero)
 		self.label.text = name
 		self.backgroundColor = color
-		self.layer.borderWidth = 1
-		self.layer.borderColor = UIColor.black.cgColor
-		self.layer.cornerRadius = 5
+//		self.layer.borderWidth = 1
+//		self.layer.borderColor = UIColor.black.cgColor
+		self.layer.cornerRadius = 10	
 		setupUI()
 	}
 	required init?(coder: NSCoder) {

@@ -15,7 +15,7 @@ extension SearchLocationViewControllerViewModel {
 		let fTs = firstTS.timeIntervalSinceReferenceDate
 		let lTs = lastTS.timeIntervalSinceReferenceDate
 		let cTs = currentTS.timeIntervalSinceReferenceDate
-		let ext = (lTs - fTs) * 0.05
+		let ext = (lTs - fTs) * 0.02
 		
 		let fTsExtended = fTs - ext
 		let lTsExtended = lTs + ext
@@ -85,18 +85,21 @@ extension SearchLocationViewControllerViewModel {
 		guard let lastJourney = journeys.last else { return }
 		guard let firstJourneyLegs = firstJourney.legs else { return }
 		guard let lastJourneyLegs = lastJourney.legs else { return }
+		
 		guard let firstJourneyFirstLeg = firstJourneyLegs.first else { return }
-		guard let lastJourneyLastLeg = lastJourneyLegs.last else { return }
 		guard let firstJourneyLastLeg = firstJourneyLegs.last else { return }
+		guard let lastJourneyLastLeg = lastJourneyLegs.last else { return }
+
+		
 		guard let firstTimestamp = firstJourneyFirstLeg.plannedDeparture else { return }
+		guard let lastTimestampFirstTrip = firstJourneyLastLeg.plannedArrival else { return }
 		guard let lastTimestamp = lastJourneyLastLeg.plannedArrival else { return }
 		
-		
 		let firstTS = DateParcer.getDateFromDateString(dateString: firstTimestamp)
+		let lastFromFirstJourneyTS = DateParcer.getDateFromDateString(dateString: lastTimestampFirstTrip)
 		let lastTS = DateParcer.getDateFromDateString(dateString: lastTimestamp)
-	
-		var journeysViewData : [JourneyViewDataSourse] = []
 		
+		var journeysViewData : [JourneyViewDataSourse] = []
 		for journey in journeys {
 		if let res = self.constructJourneyData(journey: journey, firstTS: firstTS, lastTS: lastTS) {
 				journeysViewData.append(res)
@@ -104,6 +107,9 @@ extension SearchLocationViewControllerViewModel {
 		}
 		
 		guard let tl = self.constructTimelineData(firstTS: firstTS, lastTS: lastTS) else { return }
+		
+		prints(Double(UIScreen.main.bounds.height) / Double(DateParcer.getTwoDateIntervalInMinutes(date1: lastTS, date2: firstTS)!),
+			   Double(UIScreen.main.bounds.height) / Double(DateParcer.getTwoDateIntervalInMinutes(date1: lastFromFirstJourneyTS, date2: firstTS)!))
 		
 		self.resultJourneysViewDataSourse = ResultJourneyViewDataSourse(
 			journeys: journeysViewData,

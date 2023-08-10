@@ -19,7 +19,8 @@ extension SearchLocationViewControllerViewModel {
 				Query.regionalExpress(reTrains: false),
 				Query.pretty(pretyIntend: false),
 				Query.taxi(taxi: false),
-				Query.remarks(showRemarks: true)
+				Query.remarks(showRemarks: true),
+				Query.results(max: 4)
 			])
 		ApiService.fetch(JourneysContainer.self,query: query, type: ApiService.Requests.journeys,requestGroupId: "") { [self] result in
 				switch result {

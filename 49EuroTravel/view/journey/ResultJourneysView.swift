@@ -9,21 +9,21 @@ import UIKit
 
 class ResultJourneysView: UIView {
 	var timeline = TimelineView()
-	var journeys : [JourneyView] = []
+	var journeysViews : [JourneyView] = []
 	var currentTimeLine = CurrentTimeLineView()
 	init() {
 		super.init(frame: .zero)
 		self.backgroundColor = Constants.Gray49
 		self.layer.cornerRadius = Constants.CornerRadius.small
 		for _ in 0...4 {
-			journeys.append(JourneyView())
+			journeysViews.append(JourneyView())
 		}
 		setupUI()
 	}
 	func configure(data: ResultJourneyViewDataSourse?){
 		guard let data = data else {
 			self.timeline.configure(data: nil)
-			for journey in self.journeys {
+			for journey in self.journeysViews {
 				journey.configure(data: nil)
 			}
 			return
@@ -31,7 +31,8 @@ class ResultJourneysView: UIView {
 		
 		self.timeline.configure(data: data.timeline)
 		for (index,journeyData) in data.journeys.enumerated() {
-			journeys[index].configure(data: journeyData)
+			if index < journeysViews.count {
+			journeysViews[index].configure(data: journeyData)}
 		}
 	}
 	
@@ -41,7 +42,7 @@ class ResultJourneysView: UIView {
 	
 	func setupUI(){
 		self.addSubview(timeline)
-		for (index,journey) in self.journeys.enumerated() {
+		for (index,journey) in self.journeysViews.enumerated() {
 			self.addSubview(journey)
 			journey.translatesAutoresizingMaskIntoConstraints = false
 			journey.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

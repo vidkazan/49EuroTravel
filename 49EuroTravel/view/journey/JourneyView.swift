@@ -31,7 +31,7 @@ class JourneyView: UIView {
 		let topPosition = data.legs[0].legTopPosition
 		self.addSubview(bg)
 		var lastPosition : Double?
-		for leg in data.legs {
+		for (index,leg) in data.legs.enumerated() {
 			let leg0 = LegView(name: leg.name, color: UIColor.CompanionColors.secondary)
 			lastPosition = leg.legBottomPosition
 			workingViews.append(leg0)
@@ -39,8 +39,14 @@ class JourneyView: UIView {
 			leg0.translatesAutoresizingMaskIntoConstraints = false
 			leg0.topAnchor.constraint(equalTo: self.topAnchor,constant: self.bounds.height * leg.legTopPosition).isActive = true
 			leg0.bottomAnchor.constraint(equalTo: self.topAnchor,constant: self.bounds.height * leg.legBottomPosition).isActive = true
-			leg0.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-			leg0.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+			leg0.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+			switch index.isMultiple(of: 2){
+			case true:
+				leg0.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+			case false:
+				leg0.widthAnchor.constraint(equalTo: self.widthAnchor,constant: -5).isActive = true
+			}
+			
 		}
 		bg.translatesAutoresizingMaskIntoConstraints = false
 		bg.topAnchor.constraint(equalTo: self.topAnchor,constant: self.bounds.height * topPosition).isActive = true
