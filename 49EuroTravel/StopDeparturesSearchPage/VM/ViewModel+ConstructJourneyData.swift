@@ -82,11 +82,14 @@ extension SearchLocationViewControllerViewModel {
 		guard let src = self.journeysData else { return }
 		guard let journeys = src.journeys else { return }
 		guard let firstJourney = journeys.first else { return }
+		guard let lastJourney = journeys.last else { return }
 		guard let firstJourneyLegs = firstJourney.legs else { return }
+		guard let lastJourneyLegs = lastJourney.legs else { return }
 		guard let firstJourneyFirstLeg = firstJourneyLegs.first else { return }
+		guard let lastJourneyLastLeg = lastJourneyLegs.last else { return }
 		guard let firstJourneyLastLeg = firstJourneyLegs.last else { return }
 		guard let firstTimestamp = firstJourneyFirstLeg.plannedDeparture else { return }
-		guard let lastTimestamp = firstJourneyLastLeg.plannedArrival else { return }
+		guard let lastTimestamp = lastJourneyLastLeg.plannedArrival else { return }
 		
 		
 		let firstTS = DateParcer.getDateFromDateString(dateString: firstTimestamp)
