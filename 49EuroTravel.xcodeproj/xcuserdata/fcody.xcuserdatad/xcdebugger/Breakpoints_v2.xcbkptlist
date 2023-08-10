@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "3668E767-3A7C-4720-8A17-B66EAFFC2CD7"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F2DE1CED-1D36-450B-AE9C-35D22DB82BD7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "49EuroTravel/StopDeparturesSearchPage/VM/ViewModel+ConstructJourneyData.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "constructJourneysData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F2DE1CED-1D36-450B-AE9C-35D22DB82BD7 - 7da6bcec0ec25a32"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_9EuroTravel.SearchLocationViewControllerViewModel.constructJourneysData() -&gt; ()"
+                  moduleName = "49EuroTravel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fcody/Desktop/swift/49EuroTravel/49EuroTravel/StopDeparturesSearchPage/VM/ViewModel+ConstructJourneyData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "F2DE1CED-1D36-450B-AE9C-35D22DB82BD7 - 7da6bcec0ec25a32"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_9EuroTravel.SearchLocationViewControllerViewModel.constructJourneysData() -&gt; ()"
+                  moduleName = "49EuroTravel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fcody/Desktop/swift/49EuroTravel/49EuroTravel/StopDeparturesSearchPage/VM/ViewModel+ConstructJourneyData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "F2DE1CED-1D36-450B-AE9C-35D22DB82BD7 - 7da6bcec0ec25a32"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_9EuroTravel.SearchLocationViewControllerViewModel.constructJourneysData() -&gt; ()"
+                  moduleName = "49EuroTravel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fcody/Desktop/swift/49EuroTravel/49EuroTravel/StopDeparturesSearchPage/VM/ViewModel+ConstructJourneyData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "276">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
