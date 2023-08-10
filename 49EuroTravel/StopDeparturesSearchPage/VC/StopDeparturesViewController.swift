@@ -24,6 +24,10 @@ class SearchLocationViewController : UIViewController {
 		view.selectedSegmentIndex = 0
 		return view
 	}()
+	var resultScrollView : UIScrollView = {
+		let view = UIScrollView()
+		return view
+	}()
 	var resultJourneysView = ResultJourneysView()
 
 	init(_ viewModel: SearchLocationViewControllerViewModel = SearchLocationViewControllerViewModel() ) {
