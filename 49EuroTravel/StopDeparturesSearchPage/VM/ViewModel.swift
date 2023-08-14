@@ -62,7 +62,12 @@ extension SearchLocationViewControllerViewModel {
 	}
 	
 	func updateSearchData(stop : Stop, type : LocationDirectionType){
-		if journeySearchData.updateSearchData(type: type, stop: stop) == true {
+		if journeySearchData.updateSearchStopData(type: type, stop: stop) == true {
+			self.fetchJourneys()
+		}
+	}
+	func updateJourneyTimeValue(date : Date?){
+		if journeySearchData.updateSearchTimeData(departureTime: date) == true {
 			self.fetchJourneys()
 		}
 	}

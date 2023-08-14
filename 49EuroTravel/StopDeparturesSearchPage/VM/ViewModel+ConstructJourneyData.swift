@@ -10,68 +10,46 @@ import UIKit
 
 extension SearchLocationViewControllerViewModel {
 	
-	private func getTimeLabelPosition(firstTS : Date?, lastTS: Date?, currentTS: Date?) -> Double?{
-		guard let firstTS = firstTS, let lastTS = lastTS, let currentTS = currentTS else { return nil }
-		let fTs = firstTS.timeIntervalSinceReferenceDate
-		let lTs = lastTS.timeIntervalSinceReferenceDate
-		let cTs = currentTS.timeIntervalSinceReferenceDate
-		let ext = (lTs - fTs) * 0.02
-		
-		let fTsExtended = fTs - ext
-		let lTsExtended = lTs + ext
-		
-		let diffExtended = lTsExtended - fTsExtended
-		
-		let cDiff = cTs - fTsExtended
-		
-		return cDiff / diffExtended
-	}
-	
-	private func constructTimelineTimelabelData(firstTS: Date?,lastTS: Date?,currentTS: Date?) -> TimelineTimeLabelDataSourse? {
-		guard let firstTS = firstTS, let lastTS = lastTS, let currentTS = currentTS else { return nil }
-		let tl = TimelineTimeLabelDataSourse(
-			text: DateParcer.getTimeStringFromDate(date: currentTS),
-			   textCenterYposition: self.getTimeLabelPosition(
-				   firstTS: firstTS,
-				   lastTS: lastTS,
-				   currentTS: currentTS)!)
-		return tl
-	}
-	
-	private func constructTimelineData(firstTS: Date?,lastTS: Date?) -> TimelineViewDataSourse? {
-		let tl = TimelineViewDataSourse(timeLabels: [
-			self.constructTimelineTimelabelData(firstTS: firstTS, lastTS: lastTS, currentTS: firstTS)!,
-			self.constructTimelineTimelabelData(firstTS: firstTS, lastTS: lastTS, currentTS: lastTS)!
-		])
-		return tl
-	}
-	
 	func constructLegData(leg : Leg,firstTS: Date?, lastTS: Date?) -> LegViewDataSourse? {
 		guard
-			let startTSString = leg.plannedDeparture,
-			let endTSString = leg.plannedArrival,
+			let plannedDepartureTSString = leg.plannedDeparture,
+			let plannedArrivalTSString = leg.plannedArrival,
+			let actualDepartureTSString = leg.departure,
+			let actualArrivalTSString = leg.arrival,
 			let lineName = leg.line?.name else { return nil }
 		
-		let startTS = DateParcer.getDateFromDateString(dateString: startTSString)
-		let endTS = DateParcer.getDateFromDateString(dateString: endTSString)
+		let plannedDepartureTS = DateParcer.getDateFromDateString(dateString: plannedDepartureTSString)
+		let plannedArrivalTS = DateParcer.getDateFromDateString(dateString: plannedArrivalTSString)
+		let actualDepartureTS = DateParcer.getDateFromDateString(dateString: actualDepartureTSString)
+		let actualArrivalTS = DateParcer.getDateFromDateString(dateString: actualArrivalTSString)
 		
-		guard let legTopPosition = getTimeLabelPosition( firstTS: firstTS, lastTS: lastTS,	currentTS: startTS),
-			  let legBottomPosition = getTimeLabelPosition( firstTS: firstTS, lastTS: lastTS,	currentTS: endTS) else { return nil }
+		guard let plannedDeparturePosition = getTimeLabelPosition( firstTS: firstTS, lastTS: lastTS,currentTS: plannedDepartureTS),
+			  let actualDeparturePosition = getTimeLabelPosition( firstTS: firstTS, lastTS: lastTS,	currentTS: actualDepartureTS),
+			  let plannedArrivalPosition = getTimeLabelPosition( firstTS: firstTS, lastTS: lastTS,	currentTS: plannedArrivalTS),
+			  let actualArrivalPosition = getTimeLabelPosition( firstTS: firstTS, lastTS: lastTS,	currentTS: actualArrivalTS) else { return nil }
 		
 		let res = LegViewDataSourse(
 			name: lineName,
-			legTopPosition: legTopPosition,
-			legBottomPosition: legBottomPosition,
-			color: ((leg.arrivalDelay != nil && leg.arrivalDelay! > 0) ? UIColor.CompanionColors.red : UIColor.CompanionColors.secondary)
+			legTopPosition: actualDeparturePosition,
+			legBottomPosition: actualArrivalPosition > plannedArrivalPosition ? actualArrivalPosition : plannedArrivalPosition ,
+			color: UIColor.CompanionColors.secondary
 		)
 		return res
+	}
+	
+	func modifyLegColorDependingOnDelays(currentLeg: LegViewDataSourse?, previousLeg: LegViewDataSourse?) -> Bool{
+		guard let currentLeg = currentLeg, let previousLeg = previousLeg else { return false }
+		return previousLeg.legBottomPosition > currentLeg.legTopPosition
 	}
 	
 	func constructJourneyData(journey : Journey, firstTS: Date?, lastTS: Date?) -> JourneyViewDataSourse? {
 		var legsDataSourse : [LegViewDataSourse] = []
 		guard let legs = journey.legs else { return nil }
 		for leg in legs {
-			if let res = self.constructLegData(leg: leg, firstTS: firstTS, lastTS: lastTS) {
+			if var res = self.constructLegData(leg: leg, firstTS: firstTS, lastTS: lastTS) {
+				if legsDataSourse.last != nil && modifyLegColorDependingOnDelays(currentLeg: res, previousLeg: legsDataSourse.last) {
+					legsDataSourse[legsDataSourse.count-1].color = UIColor.CompanionColors.red
+				}
 				legsDataSourse.append(res)
 			}
 		}
@@ -107,7 +85,7 @@ extension SearchLocationViewControllerViewModel {
 		}
 		
 		guard let tl = self.constructTimelineData(firstTS: firstTS, lastTS: lastTS) else { return }
-		
+		prints("pixels per journey / pixels per all journeys")
 		prints(Double(UIScreen.main.bounds.height) / Double(DateParcer.getTwoDateIntervalInMinutes(date1: lastTS, date2: firstTS)!),
 			   Double(UIScreen.main.bounds.height) / Double(DateParcer.getTwoDateIntervalInMinutes(date1: lastFromFirstJourneyTS, date2: firstTS)!))
 		

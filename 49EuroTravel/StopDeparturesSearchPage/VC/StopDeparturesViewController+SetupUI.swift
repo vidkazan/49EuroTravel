@@ -19,6 +19,13 @@ extension SearchLocationViewController {
 		view.addSubview(timeControl)
 		view.addSubview(searchFieldTo)
 		view.addSubview(searchFieldFrom)
+		view.addSubview(datePicker)
+		
+		datePicker.translatesAutoresizingMaskIntoConstraints = false
+		datePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+		datePicker.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+		datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+		datePicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		
 		
 		searchFieldFrom.translatesAutoresizingMaskIntoConstraints = false
@@ -42,11 +49,10 @@ extension SearchLocationViewController {
 		resultScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
 		resultScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		
-		
 		resultJourneysView.translatesAutoresizingMaskIntoConstraints = false
 		resultJourneysView.topAnchor.constraint(equalTo: self.resultScrollView.topAnchor).isActive = true
 		resultJourneysView.leadingAnchor.constraint(equalTo: self.resultScrollView.leadingAnchor).isActive = true
-		resultJourneysView.heightAnchor.constraint(equalTo: self.resultScrollView.heightAnchor,multiplier: 2).isActive = true
+		resultJourneysView.heightAnchor.constraint(equalTo: self.resultScrollView.heightAnchor,multiplier: 1).isActive = true
 		resultJourneysView.bottomAnchor.constraint(equalTo: self.resultScrollView.bottomAnchor).isActive = true
 	}
 }

@@ -18,17 +18,28 @@ struct SearchLocationData {
 }
 
 struct JourneySearchData {
-	var departure : SearchLocationData?
-	var arrival : SearchLocationData?
+	var departureStop : SearchLocationData?
+	var arrivalStop : SearchLocationData?
+	var departureTime : Date = Date.now
+	var arrivalTime : Date = Date.now
 	
-	mutating func updateSearchData(type: LocationDirectionType, stop : Stop) -> Bool {
+	mutating func updateSearchStopData(type: LocationDirectionType, stop : Stop) -> Bool {
 		switch type {
 		case .departure:
-			self.departure =  SearchLocationData(type: .departure, stop: stop)
+			self.departureStop =  SearchLocationData(type: .departure, stop: stop)
 		case .arrival:
-			self.arrival =  SearchLocationData(type: .arrival, stop : stop)
+			self.arrivalStop =  SearchLocationData(type: .arrival, stop : stop)
 		}
-		if self.arrival != nil && self.departure != nil {
+		if self.arrivalStop != nil && self.departureStop != nil {
+			return true
+		}
+		return false
+	}
+	
+	mutating func updateSearchTimeData(departureTime : Date?) -> Bool {
+		guard let departureTime = departureTime else { return false }
+		self.departureTime = departureTime
+		if self.arrivalStop != nil && self.departureStop != nil {
 			return true
 		}
 		return false

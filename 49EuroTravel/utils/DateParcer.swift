@@ -77,4 +77,17 @@ class DateParcer {
 //		print("Current time: \(timeString)")
 		return timeString
 	}
+	
+	static func getTimeAndDateStringFromDate(date : Date) -> String {
+		let dateFormatter = DateFormatter()
+
+		// Set the desired time style
+		dateFormatter.dateFormat = "dd MMM YYYY  HH:mm"
+
+		// Convert the Date object to a time string
+		let timeString = dateFormatter.string(from: date)
+
+//		print("Current time: \(timeString)")
+		return timeString
+	}
 }

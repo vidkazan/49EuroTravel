@@ -11,8 +11,9 @@ extension SearchLocationViewControllerViewModel {
 	func fetchJourneys(){
 			var query : [URLQueryItem] = []
 			query = Query.getQueryItems(methods: [
-				Query.departureStop(departureStopId: self.journeySearchData.departure?.stop.id),
-				Query.arrivalStop(arrivalStopId: self.journeySearchData.arrival?.stop.id),
+				Query.departureTime(departureTime: self.journeySearchData.departureTime),
+				Query.departureStop(departureStopId: self.journeySearchData.departureStop?.stop.id),
+				Query.arrivalStop(arrivalStopId: self.journeySearchData.arrivalStop?.stop.id),
 //				Query.duration(minutes: 20),
 				Query.national(icTrains: false),
 				Query.nationalExpress(iceTrains: false),

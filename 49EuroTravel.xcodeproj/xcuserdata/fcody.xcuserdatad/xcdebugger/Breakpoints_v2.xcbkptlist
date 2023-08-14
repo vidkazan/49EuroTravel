@@ -14,8 +14,8 @@
             filePath = "49EuroTravel/StopDeparturesSearchPage/VM/ViewModel+ConstructJourneyData.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "constructJourneysData()"
             landmarkType = "7">
             <Locations>
@@ -63,6 +63,54 @@
                   startingLineNumber = "82"
                   endingLineNumber = "82"
                   offsetFromSymbolStart = "276">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "258191B2-FC9F-4AA1-8D47-9ABFA996601E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "49EuroTravel/StopDeparturesSearchPage/VM/ViewModel+ConstructJourneyData.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "constructLegData(leg:firstTS:lastTS:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "258191B2-FC9F-4AA1-8D47-9ABFA996601E - da9912587def7390"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_9EuroTravel.SearchLocationViewControllerViewModel.constructLegData(leg: _9EuroTravel.Leg, firstTS: Swift.Optional&lt;Foundation.Date&gt;, lastTS: Swift.Optional&lt;Foundation.Date&gt;) -&gt; Swift.Optional&lt;_9EuroTravel.LegViewDataSourse&gt;"
+                  moduleName = "49EuroTravel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fcody/Desktop/swift/49EuroTravel/49EuroTravel/StopDeparturesSearchPage/VM/ViewModel+ConstructJourneyData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "258191B2-FC9F-4AA1-8D47-9ABFA996601E - da9912587def73d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_9EuroTravel.SearchLocationViewControllerViewModel.constructLegData(leg: _9EuroTravel.Leg, firstTS: Swift.Optional&lt;Foundation.Date&gt;, lastTS: Swift.Optional&lt;Foundation.Date&gt;) -&gt; Swift.Optional&lt;_9EuroTravel.LegViewDataSourse&gt;"
+                  moduleName = "49EuroTravel"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/fcody/Desktop/swift/49EuroTravel/49EuroTravel/StopDeparturesSearchPage/VM/ViewModel+ConstructJourneyData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "1940">
                </Location>
             </Locations>
          </BreakpointContent>

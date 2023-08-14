@@ -21,7 +21,7 @@ struct LegViewDataSourse {
 	let name : String
 	let legTopPosition : Double
 	let legBottomPosition : Double
-	let color : UIColor
+	var color : UIColor
 }
 
 struct JourneyViewDataSourse {

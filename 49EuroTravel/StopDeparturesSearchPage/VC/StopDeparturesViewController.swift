@@ -16,12 +16,20 @@ class SearchLocationViewController : UIViewController {
 	}()
 	
 	var viewModel : SearchLocationViewControllerViewModel
+	var datePicker : TimeChoosingView = {
+		var datePicker = TimeChoosingView()
+		datePicker.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0, alpha: 0)
+		datePicker.isHidden = true
+		return datePicker
+	}()
 	var searchFieldFrom = SearchView(placeholder: "from", image: Constants.locationIcon, type: .departure)
 	var searchFieldTo = SearchView(placeholder: "to",image: Constants.flipIcon, type: .arrival)
-	var timeControl : UISegmentedControl = {
-		let str = ["now","06.08.2023 15:03"]
-		let view = UISegmentedControl(items: str)
+	var timeControl : CustomSegmentControl = {
+		let str = ["now",DateParcer.getTimeAndDateStringFromDate(date: Date.now)]
+		let view = CustomSegmentControl(items: str)
 		view.selectedSegmentIndex = 0
+		view.backgroundColor = .white
+//		view.addTarget(self, action: #selector(timeSelectorValueHasChanged(_:)), for: .allEvents)
 		return view
 	}()
 	var resultScrollView : UIScrollView = {
@@ -29,7 +37,7 @@ class SearchLocationViewController : UIViewController {
 		return view
 	}()
 	var resultJourneysView = ResultJourneysView()
-
+	
 	init(_ viewModel: SearchLocationViewControllerViewModel = SearchLocationViewControllerViewModel() ) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
@@ -39,11 +47,16 @@ class SearchLocationViewController : UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.hideKeyboardWhenTappedAround()
 		self.searchFieldFrom.delegate = self
 		self.searchFieldTo.delegate = self
+		self.datePicker.delegate = self
+		self.timeControl.customDelegate = self
+
 		setupUI()
 		DispatchQueue.main.async {
 			self.viewModel.onStateChange = { [ weak self ] state in
@@ -80,13 +93,6 @@ class SearchLocationViewController : UIViewController {
 						self.alert.message = error.description
 						self.present(self.alert, animated: true, completion: nil)
 					}
-	//			case .onProfilePage(userModel: let userModel, indexPath: let cellIndexPath, requestGroupId: let requestGroupId):
-	//				DispatchQueue.main.async {
-	//					let vm = UserProfileViewControllerViewModel(userModel, requestsGgroupIdentifier : requestGroupId, searchVM: self?.viewModel)
-	//					let userProfileViewController = UserProfileViewController(viewModel: vm)
-	////					self?.navigationController?.pushViewController(userProfileViewController, animated: true)
-	//					(self?.collectionView.cellForItem(at: cellIndexPath) as! SearchResultCell).deselectCell()
-	//				}
 				}
 			}
 		}
@@ -97,16 +103,32 @@ class SearchLocationViewController : UIViewController {
 	}
 }
 
-
-
 extension SearchLocationViewController {
 	func hideKeyboardWhenTappedAround() {
 		let tap = UITapGestureRecognizer(target: self, action: #selector(SearchLocationViewController.dismissKeyboard))
 		tap.cancelsTouchesInView = false
-		
 	}
 	
 	@objc func dismissKeyboard() {
 		view.endEditing(true)
+	}
+}
+
+
+extension SearchLocationViewController : CustomSegmentControlTouchDelegate {
+	func segmentedControlDidTouched(didSelectSegmentAtIndex index: Int) {
+		self.timeSelectorValueHasChanged(indexTapped: index)
+	}
+	
+	@IBAction func timeSelectorValueHasChanged(indexTapped: Int) {
+		switch indexTapped {
+		case 0:
+			viewModel.updateJourneyTimeValue(date: Date.now)
+			self.datePicker.isHidden = true
+		case 1:
+			self.datePicker.isHidden = false
+		default:
+			break
+		}
 	}
 }

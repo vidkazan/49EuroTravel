@@ -32,7 +32,7 @@ class JourneyView: UIView {
 		self.addSubview(bg)
 		var lastPosition : Double?
 		for (index,leg) in data.legs.enumerated() {
-			let leg0 = LegView(name: leg.name, color: UIColor.CompanionColors.secondary)
+			let leg0 = LegView(name: leg.name, color: leg.color)
 			lastPosition = leg.legBottomPosition
 			workingViews.append(leg0)
 			self.addSubview(leg0)

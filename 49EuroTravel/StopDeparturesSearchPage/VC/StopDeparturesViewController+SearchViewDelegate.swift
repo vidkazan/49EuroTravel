@@ -30,3 +30,14 @@ extension SearchLocationViewController : SearchViewDelegate {
 		}
 	}
 }
+
+
+extension SearchLocationViewController : TimeChooseViewDelegate {
+	func timeDidChanged(date: Date) {
+		viewModel.updateJourneyTimeValue(date: date)
+		prints(DateParcer.getTimeAndDateStringFromDate(date: date))
+		self.timeControl.setTitle(DateParcer.getTimeAndDateStringFromDate(date: date), forSegmentAt: 1)
+		self.timeControl.setNeedsLayout()
+		self.timeControl.layoutIfNeeded()
+	}
+}

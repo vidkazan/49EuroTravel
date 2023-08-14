@@ -51,6 +51,8 @@ enum Query{
 	case pretty(pretyIntend: Bool)
 	case departureStop(departureStopId : String?)
 	case arrivalStop(arrivalStopId : String?)
+	case departureTime(departureTime : Date)
+	case arrivalTime(arrivalTime : Date)
 	
 	func getQueryMethod() -> URLQueryItem {
 		switch self {
@@ -140,6 +142,14 @@ enum Query{
 			return URLQueryItem(
 				name: "to",
 				value: arrivalStopId)
+		case .departureTime(let departureTime):
+			return URLQueryItem(
+				name: "departure",
+				value: ISO8601DateFormatter().string(from: departureTime))
+		case .arrivalTime(let arrivalTime):
+			return URLQueryItem(
+				name: "arrival",
+				value: ISO8601DateFormatter().string(from: arrivalTime))
 		}
 	}
 	static func getQueryItems(methods : [Query]) -> [URLQueryItem] {
