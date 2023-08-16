@@ -60,14 +60,9 @@ class SearchLocationViewController : UIViewController {
 			self.viewModel.onStateChange = { [ weak self ] state in
 				switch state {
 				case .onStart:
-					self?.searchFieldFrom.configure(
-						image: Constants.locationIcon,
-						stops: [],
-						isNotFound: false,
-						awaitingData: false
-					)
-				case .onLoading:
-					self?.searchFieldFrom.setLoading()
+					break
+//				case .onLoading:
+//					self?.searchFieldFrom.setLoading()
 				case .onNewDataDepartureStop:
 					self?.searchFieldFrom.configure(
 						image: Constants.locationIcon,

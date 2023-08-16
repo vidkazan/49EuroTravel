@@ -9,7 +9,7 @@ import Foundation
 
 enum SearchControllerStates {
 	case onStart
-	case onLoading
+//	case onLoading
 	case onNewDataDepartureStop
 	case onNewDataArrivalStop
 	case onNewDataJourney
@@ -19,8 +19,8 @@ enum SearchControllerStates {
 		switch self {
 		case .onStart:
 			return "onStart"
-		case .onLoading:
-			return "onLoading"
+//		case .onLoading:
+//			return "onLoading"
 		case .onNewDataDepartureStop:
 			return "onNewDataDepartureStop"
 		case .onNewDataArrivalStop:

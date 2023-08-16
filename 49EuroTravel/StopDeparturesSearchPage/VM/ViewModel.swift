@@ -53,7 +53,8 @@ extension SearchLocationViewControllerViewModel {
 	func updateSearchText(text : String?,isDeparture : Bool){
 		guard let text = text else { return }
 		if text.count > 2 && text.count > self.previousSearchLineString.count {
-			self.state = .onLoading
+			
+//			self.state = .onLoading
 			self.fetchLocations(text: text,isDeparture : isDeparture)
 		}
 		self.previousSearchLineString = text

@@ -39,6 +39,9 @@ class SearchView: UIView {
 	
 	@objc private func textFieldDidChange(_ textField: UITextField) {
 		delegate?.textFieldDidChange(text: textField.text ?? "", type: self.type)
+		guard let text = textField.text else { return }
+		if text.count > 2 {
+		self.setLoading() }
 	}
 	
 	@objc private func textFieldEditingDidBegin(_ textField: UITextField) {
