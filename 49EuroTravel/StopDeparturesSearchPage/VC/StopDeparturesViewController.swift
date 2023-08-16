@@ -14,11 +14,9 @@ class SearchLocationViewController : UIViewController {
 		alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
 		return alert
 	}()
-	
 	var viewModel : SearchLocationViewControllerViewModel
 	var datePicker : TimeChoosingView = {
 		var datePicker = TimeChoosingView()
-		datePicker.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0, alpha: 0)
 		datePicker.isHidden = true
 		return datePicker
 	}()
@@ -28,8 +26,7 @@ class SearchLocationViewController : UIViewController {
 		let str = ["now",DateParcer.getTimeAndDateStringFromDate(date: Date.now)]
 		let view = CustomSegmentControl(items: str)
 		view.selectedSegmentIndex = 0
-		view.backgroundColor = .white
-//		view.addTarget(self, action: #selector(timeSelectorValueHasChanged(_:)), for: .allEvents)
+
 		return view
 	}()
 	var resultScrollView : UIScrollView = {
@@ -58,6 +55,7 @@ class SearchLocationViewController : UIViewController {
 		self.timeControl.customDelegate = self
 
 		setupUI()
+		setupColors()
 		DispatchQueue.main.async {
 			self.viewModel.onStateChange = { [ weak self ] state in
 				switch state {
@@ -86,7 +84,6 @@ class SearchLocationViewController : UIViewController {
 					self?.resultJourneysView.configure(data: self?.viewModel.resultJourneysViewDataSourse)
 				case .onError(error: let error, _: _):
 					self?.searchFieldFrom.setStopLoading(view: Constants.locationIcon)
-					
 					switch error {
 					case .cannotConnectToHost,.cannotDecodeRawData,.cannotDecodeContentData,.badUrl,.badServerResponse, .badRequest, .requestRateExceeded:
 						guard let self = self else { fatalError("no view controller object") }

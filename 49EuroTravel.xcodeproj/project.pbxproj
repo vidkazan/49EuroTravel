@@ -38,7 +38,7 @@
 		7DC4E88D2A0525BA0053ED3E /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4E88C2A0525BA0053ED3E /* DequeModule */; };
 		7DC4E88F2A0525BA0053ED3E /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 7DC4E88E2A0525BA0053ED3E /* OrderedCollections */; };
 		7DC4E8912A05260D0053ED3E /* Prints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4E8902A05260D0053ED3E /* Prints.swift */; };
-		7DC9CF342A8AC91800652330 /* 49SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9CF332A8AC91800652330 /* 49SegmentControl.swift */; };
+		7DC9CF342A8AC91800652330 /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9CF332A8AC91800652330 /* CustomSegmentControl.swift */; };
 		7DF88ABB2A83AB2800BBB3F3 /* ResultJourneysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88ABA2A83AB2800BBB3F3 /* ResultJourneysView.swift */; };
 		7DF88ABE2A83AD2300BBB3F3 /* LegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88ABD2A83AD2300BBB3F3 /* LegView.swift */; };
 		7DF88AC02A83AD3100BBB3F3 /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF88ABF2A83AD3100BBB3F3 /* JourneyView.swift */; };
@@ -97,7 +97,7 @@
 		7DC4E8852A0524430053ED3E /* ApiServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceErrors.swift; sourceTree = "<group>"; };
 		7DC4E8872A05249D0053ED3E /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		7DC4E8902A05260D0053ED3E /* Prints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prints.swift; sourceTree = "<group>"; };
-		7DC9CF332A8AC91800652330 /* 49SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 49SegmentControl.swift; sourceTree = "<group>"; };
+		7DC9CF332A8AC91800652330 /* CustomSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
 		7DF88ABA2A83AB2800BBB3F3 /* ResultJourneysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultJourneysView.swift; sourceTree = "<group>"; };
 		7DF88ABD2A83AD2300BBB3F3 /* LegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegView.swift; sourceTree = "<group>"; };
 		7DF88ABF2A83AD3100BBB3F3 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 				7D09068B2A053458008074C1 /* Color.swift */,
 				7D09068D2A05348E008074C1 /* DateParcer.swift */,
 				7D10F3062A0671990077B877 /* DelayReasonCodesList.swift */,
-				7DC9CF332A8AC91800652330 /* 49SegmentControl.swift */,
+				7DC9CF332A8AC91800652330 /* CustomSegmentControl.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -429,7 +429,7 @@
 				7DC4E8882A05249D0053ED3E /* ApiService.swift in Sources */,
 				7DC4E8532A0521150053ED3E /* AppDelegate.swift in Sources */,
 				7D73870A2A83D04B00ABFFFB /* ViewDataSourse.swift in Sources */,
-				7DC9CF342A8AC91800652330 /* 49SegmentControl.swift in Sources */,
+				7DC9CF342A8AC91800652330 /* CustomSegmentControl.swift in Sources */,
 				7DF88AC02A83AD3100BBB3F3 /* JourneyView.swift in Sources */,
 				7DB40EA92A842FB00046C634 /* StopDeparturesViewController+SearchViewDelegate.swift in Sources */,
 				7DC4E8552A0521150053ED3E /* SceneDelegate.swift in Sources */,

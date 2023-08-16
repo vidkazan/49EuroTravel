@@ -8,25 +8,37 @@
 import UIKit
 
 extension SearchLocationViewController {
-	func setupUI(){
-		self.navigationItem.title = "Chew-chew"
-		self.view.backgroundColor = UIColor.white
+	func setupColors(){
+		self.view.backgroundColor = .white
+		self.timeControl.backgroundColor = .white
 		self.searchFieldTo.backgroundColor = Constants.Gray49
 		self.searchFieldFrom.backgroundColor = Constants.Gray49
+		self.resultJourneysView.backgroundColor = .white
+	}
+}
+
+extension SearchLocationViewController {
+	func setupUI(){
+		self.navigationItem.title = "Chew-chew"
 		
 		view.addSubview(resultScrollView)
-		self.resultScrollView.addSubview(resultJourneysView)
 		view.addSubview(timeControl)
 		view.addSubview(searchFieldTo)
 		view.addSubview(searchFieldFrom)
 		view.addSubview(datePicker)
+		
+		resultScrollView.addSubview(resultJourneysView)
+		resultJourneysView.translatesAutoresizingMaskIntoConstraints = false
+		resultJourneysView.topAnchor.constraint(equalTo: resultScrollView.topAnchor).isActive = true
+		resultJourneysView.leadingAnchor.constraint(equalTo: resultScrollView.leadingAnchor).isActive = true
+		resultJourneysView.widthAnchor.constraint(equalTo: resultScrollView.widthAnchor).isActive = true
+		resultJourneysView.heightAnchor.constraint(equalTo: resultScrollView.heightAnchor,multiplier: 1).isActive = true
 		
 		datePicker.translatesAutoresizingMaskIntoConstraints = false
 		datePicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
 		datePicker.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
 		datePicker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
 		datePicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-		
 		
 		searchFieldFrom.translatesAutoresizingMaskIntoConstraints = false
 		searchFieldFrom.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -48,11 +60,5 @@ extension SearchLocationViewController {
 		resultScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
 		resultScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
 		resultScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-		
-		resultJourneysView.translatesAutoresizingMaskIntoConstraints = false
-		resultJourneysView.topAnchor.constraint(equalTo: self.resultScrollView.topAnchor).isActive = true
-		resultJourneysView.leadingAnchor.constraint(equalTo: self.resultScrollView.leadingAnchor).isActive = true
-		resultJourneysView.heightAnchor.constraint(equalTo: self.resultScrollView.heightAnchor,multiplier: 1).isActive = true
-		resultJourneysView.bottomAnchor.constraint(equalTo: self.resultScrollView.bottomAnchor).isActive = true
 	}
 }

@@ -1,5 +1,5 @@
 //
-//  49SegmentControl.swift
+//  CustomSegmentControl.swift
 //  49EuroTravel
 //
 //  Created by Dmitrii Grigorev on 14.08.23.

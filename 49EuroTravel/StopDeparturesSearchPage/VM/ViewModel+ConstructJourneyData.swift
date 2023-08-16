@@ -90,6 +90,7 @@ extension SearchLocationViewControllerViewModel {
 			   Double(UIScreen.main.bounds.height) / Double(DateParcer.getTwoDateIntervalInMinutes(date1: lastFromFirstJourneyTS, date2: firstTS)!))
 		
 		self.resultJourneysViewDataSourse = ResultJourneyViewDataSourse(
+			awaitingData: false,
 			journeys: journeysViewData,
 			timeline: tl
 		)

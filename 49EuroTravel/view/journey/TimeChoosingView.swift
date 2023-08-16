@@ -13,11 +13,11 @@ protocol TimeChooseViewDelegate {
 
 class TimeChoosingView: UIView {
 	var delegate : TimeChooseViewDelegate?
-	let blur : UIVisualEffectView = {
-		let blurEffect = UIBlurEffect(style: .systemChromeMaterialLight)
-		let blurEffectView = UIVisualEffectView(effect: blurEffect)
-		return blurEffectView
-	}()
+//	let blur : UIVisualEffectView = {
+//		let blurEffect = UIBlurEffect(style: .systemChromeMaterialLight)
+//		let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//		return blurEffectView
+//	}()
 	
 	let datePicker : UIDatePicker = {
 		let datePicker = UIDatePicker()
@@ -26,7 +26,20 @@ class TimeChoosingView: UIView {
 		datePicker.timeZone = .current
 		datePicker.preferredDatePickerStyle = .inline
 		datePicker.tintColor = .gray
+	 	datePicker.setDate(Date.now, animated: true)
+		datePicker.locale = NSLocale(localeIdentifier: "en_GB") as Locale
+		return datePicker
+	}()
+	
+	let timePicker : UIDatePicker = {
+		let datePicker = UIDatePicker()
+		datePicker.datePickerMode = .time
+		datePicker.minuteInterval = 5
+		datePicker.timeZone = .current
+		datePicker.preferredDatePickerStyle = .wheels
+		datePicker.tintColor = .gray
 		datePicker.setDate(Date.now, animated: true)
+		datePicker.locale = NSLocale(localeIdentifier: "en_GB") as Locale
 		return datePicker
 	}()
 	
@@ -46,26 +59,32 @@ class TimeChoosingView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	@objc func datePickerDoneBtnIsPressed(sender : UIDatePicker){
+	@objc func datePickerDoneBtnIsPressed(){
 		delegate?.timeDidChanged(date: datePicker.date)
 		self.isHidden = true
 	}
 	
 	func setupUI(){
+		self.backgroundColor = .white
 		self.layer.cornerRadius = Constants.CornerRadius.small
-		self.addSubview(blur)
+//		self.addSubview(blur)
 		self.addSubview(datePicker)
+//		self.addSubview(timePicker)
 		self.addSubview(doneBtn)
 		
-		blur.translatesAutoresizingMaskIntoConstraints = false
-		blur.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-		blur.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-		blur.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-		blur.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-		
+//		blur.translatesAutoresizingMaskIntoConstraints = false
+//		blur.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+//		blur.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+//		blur.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+//		blur.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+
 		datePicker.translatesAutoresizingMaskIntoConstraints = false
 		datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
 		datePicker.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+		
+//		timePicker.translatesAutoresizingMaskIntoConstraints = false
+//		timePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+//		timePicker.topAnchor.constraint(equalTo: self.datePicker.bottomAnchor).isActive = true
 		
 		doneBtn.translatesAutoresizingMaskIntoConstraints = false
 		doneBtn.topAnchor.constraint(equalTo: self.datePicker.bottomAnchor).isActive = true

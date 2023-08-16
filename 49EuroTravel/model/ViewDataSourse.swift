@@ -8,29 +8,30 @@
 import Foundation
 import UIKit
 
-struct TimelineTimeLabelDataSourse {
+struct TimelineTimeLabelDataSourse : Equatable {
 	let text : String
 	let textCenterYposition : Double
 }
 
-struct TimelineViewDataSourse {
+struct TimelineViewDataSourse : Equatable {
 	let timeLabels : [TimelineTimeLabelDataSourse]
 }
 
-struct LegViewDataSourse {
+struct LegViewDataSourse : Equatable {
 	let name : String
 	let legTopPosition : Double
 	let legBottomPosition : Double
 	var color : UIColor
 }
 
-struct JourneyViewDataSourse {
+struct JourneyViewDataSourse : Equatable {
 	let legs : [LegViewDataSourse]
 }
 
-struct ResultJourneyViewDataSourse {
-	let journeys : [JourneyViewDataSourse]
-	let timeline : TimelineViewDataSourse
+struct ResultJourneyViewDataSourse : Equatable {
+	let awaitingData : Bool
+	let journeys : [JourneyViewDataSourse]?
+	let timeline : TimelineViewDataSourse?
 }
 
 

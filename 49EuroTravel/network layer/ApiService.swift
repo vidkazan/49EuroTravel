@@ -132,7 +132,7 @@ class ApiService  {
 						switch type {
 						case .stopDepartures, .locations,.journeys:
 							if let t = set[type.index].1 {
-								prints("previous is cancelled")
+//							//	prints("previous is cancelled")
 								t.cancel()
 							}
 						case .customGet:
@@ -149,7 +149,7 @@ class ApiService  {
 								}
 //								prints(task?.0.type.description ?? "", task?.0.query ?? "", "starting")
 								task?.function()
-								prints(task?.0.type.description ?? "", task?.0.query ?? "")
+//								prints(task?.0.type.description ?? "", task?.0.query ?? "")
 							}
 							return
 //						case .getScaleTeamsAsCorrector, .getLocations:
@@ -189,7 +189,7 @@ class ApiService  {
 				components.host = Constants.apiData.urlBase
 				components.scheme = "https"
 				components.queryItems = query
-				prints(components)
+//				prints(components)
 				return components.url
 			case .customGet(let path):
 				return URL(string: path)
@@ -259,12 +259,12 @@ class ApiService  {
 					do {
 						let decodedData = try decoder.decode(T.self, from: data)
 						completed(.success(decodedData))
-						prints(type.description,query,"finished")
+//						prints(type.description,query,"finished")
 						set[type.index].1 = nil
 						break
 					} catch {
 						completed(.failure(.cannotDecodeContentData))
-						print(type.description,query,"error Decode JSON")
+//						print(type.description,query,"error Decode JSON")
 						set[type.index].1 = nil
 						return
 					}

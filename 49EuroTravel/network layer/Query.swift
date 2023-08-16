@@ -30,6 +30,7 @@ import Foundation
 
 
 enum Query{
+	case transferTime(transferTime: String)
 	case location(location : String?)
 	case when(time : Date?)
 	case direction(dir : String)
@@ -150,6 +151,10 @@ enum Query{
 			return URLQueryItem(
 				name: "arrival",
 				value: ISO8601DateFormatter().string(from: arrivalTime))
+		case .transferTime(let transferTime):
+			return URLQueryItem(
+				name: "transferTime",
+				value: transferTime)
 		}
 	}
 	static func getQueryItems(methods : [Query]) -> [URLQueryItem] {
