@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+enum badgesList {
+	case price(price: String)
+	case dticket
+	case cancelled
+	case connectionNotReachable
+}
+
 struct TimelineTimeLabelDataSourse : Equatable {
 	let text : String
 	let textCenterYposition : Double
@@ -24,8 +31,20 @@ struct LegViewDataSourse : Equatable {
 	var color : UIColor
 }
 
+struct JourneyCollectionViewDataSourse : Equatable {
+	let startTimeLabelText : String
+	let endTimeLabelText : String
+	let durationLabelText : String
+	let legs : [LegViewDataSourse]
+}
+
 struct JourneyViewDataSourse : Equatable {
 	let legs : [LegViewDataSourse]
+}
+
+struct AllJourneysCollectionViewDataSourse : Equatable {
+	let awaitingData : Bool
+	let journeys : [JourneyCollectionViewDataSourse]
 }
 
 struct ResultJourneyViewDataSourse : Equatable {
@@ -33,11 +52,3 @@ struct ResultJourneyViewDataSourse : Equatable {
 	let journeys : [JourneyViewDataSourse]?
 	let timeline : TimelineViewDataSourse?
 }
-
-
-
-
-
-
-
-

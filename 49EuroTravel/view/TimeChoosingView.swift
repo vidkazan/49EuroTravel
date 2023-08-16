@@ -46,7 +46,7 @@ class TimeChoosingView: UIView {
 	let doneBtn : UIButton = {
 		let btn = UIButton(configuration: .gray())
 		btn.configuration?.title = "Done"
-		btn.configuration?.baseForegroundColor = .darkGray
+		btn.configuration?.baseForegroundColor = .black
 		return btn
 	}()
 	init() {
@@ -67,6 +67,7 @@ class TimeChoosingView: UIView {
 	func setupUI(){
 		self.backgroundColor = .white
 		self.layer.cornerRadius = Constants.CornerRadius.small
+		self.doneBtn.layer.cornerRadius = Constants.CornerRadius.small
 //		self.addSubview(blur)
 		self.addSubview(datePicker)
 //		self.addSubview(timePicker)
@@ -88,7 +89,7 @@ class TimeChoosingView: UIView {
 		
 		doneBtn.translatesAutoresizingMaskIntoConstraints = false
 		doneBtn.topAnchor.constraint(equalTo: self.datePicker.bottomAnchor).isActive = true
-		doneBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
+		doneBtn.heightAnchor.constraint(equalToConstant: 35).isActive = true
 		doneBtn.leadingAnchor.constraint(equalTo: self.datePicker.leadingAnchor).isActive = true
 		doneBtn.trailingAnchor.constraint(equalTo: self.datePicker.trailingAnchor).isActive = true
 	}

@@ -14,7 +14,6 @@ class SearchLocationViewControllerViewModel {
 	var onStateChange : ((SearchControllerStates) -> Void)?
 	var state : SearchControllerStates {
 		didSet {
-//			prints("state: ",state.description)
 			self.onStateChange?(self.state)
 		}
 	}
@@ -30,13 +29,15 @@ class SearchLocationViewControllerViewModel {
 	}
 	var journeysData : JourneysContainer? {
 		didSet {
-			self.resultJourneysViewDataSourse = nil
-			DispatchQueue.main.async {
-				self.constructJourneysData()
-			}
+			self.constructJourneysCollectionViewData()
 		}
 	}
-	var resultJourneysViewDataSourse : ResultJourneyViewDataSourse? {
+//	var resultJourneysViewDataSourse : AllJourneysCollectionViewDataSourse? {
+//		didSet {
+//			self.state = .onNewDataJourney
+//		}
+//	}
+	var resultJourneysCollectionViewDataSourse : AllJourneysCollectionViewDataSourse? {
 		didSet {
 			self.state = .onNewDataJourney
 		}
@@ -48,13 +49,10 @@ class SearchLocationViewControllerViewModel {
 	}
 }
 
-
 extension SearchLocationViewControllerViewModel {
 	func updateSearchText(text : String?,isDeparture : Bool){
 		guard let text = text else { return }
 		if text.count > 2 && text.count > self.previousSearchLineString.count {
-			
-//			self.state = .onLoading
 			self.fetchLocations(text: text,isDeparture : isDeparture)
 		}
 		self.previousSearchLineString = text
@@ -62,19 +60,19 @@ extension SearchLocationViewControllerViewModel {
 	
 	func updateSearchData(stop : Stop, type : LocationDirectionType){
 		if journeySearchData.updateSearchStopData(type: type, stop: stop) == true {
-			self.resultJourneysViewDataSourse = ResultJourneyViewDataSourse(
-				awaitingData: true,
-				journeys: nil,
-				timeline: nil)
+//			self.resultJourneysViewDataSourse = ResultJourneyViewDataSourse(
+//				awaitingData: true,
+//				journeys: nil,
+//				timeline: nil)
 			self.fetchJourneys()
 		}
 	}
 	func updateJourneyTimeValue(date : Date?){
 		if journeySearchData.updateSearchTimeData(departureTime: date) == true {
-			self.resultJourneysViewDataSourse = ResultJourneyViewDataSourse(
-				awaitingData: true,
-				journeys: nil,
-				timeline: nil)
+//			self.resultJourneysViewDataSourse = ResultJourneyViewDataSourse(
+//				awaitingData: true,
+//				journeys: nil,
+//				timeline: nil)
 			self.fetchJourneys()
 		}
 	}

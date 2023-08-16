@@ -25,10 +25,10 @@ enum SearchControllerStates {
 			return "onNewDataDepartureStop"
 		case .onNewDataArrivalStop:
 			return "onNewDataArrivalStop"
-		case .onError:
-			return "onError"
 		case .onNewDataJourney:
 			return "onNewDataJourney"
+		case .onError:
+			return "onError"
 		}
 	}
 }

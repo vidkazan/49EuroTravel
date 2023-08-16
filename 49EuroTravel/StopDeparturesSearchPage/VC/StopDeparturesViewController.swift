@@ -25,15 +25,24 @@ class SearchLocationViewController : UIViewController {
 	var timeControl : CustomSegmentControl = {
 		let str = ["now",DateParcer.getTimeAndDateStringFromDate(date: Date.now)]
 		let view = CustomSegmentControl(items: str)
+		let font = UIFont.systemFont(ofSize: 16)
+		view.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
 		view.selectedSegmentIndex = 0
 
 		return view
 	}()
-	var resultScrollView : UIScrollView = {
-		let view = UIScrollView()
+//	var resultScrollView : UIScrollView = {
+//		let view = UIScrollView()
+//		return view
+//	}()
+//	var resultJourneysView = ResultJourneysView()
+	
+	var journeyCollectionView : UICollectionView = {
+		let layout = UICollectionViewFlowLayout()
+		let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+		view.register(JourneyCollectionViewCell.self, forCellWithReuseIdentifier: JourneyCollectionViewCell.identifier)
 		return view
 	}()
-	var resultJourneysView = ResultJourneysView()
 	
 	init(_ viewModel: SearchLocationViewControllerViewModel = SearchLocationViewControllerViewModel() ) {
 		self.viewModel = viewModel
@@ -54,6 +63,8 @@ class SearchLocationViewController : UIViewController {
 		self.datePicker.delegate = self
 		self.timeControl.customDelegate = self
 
+		
+		setupCollectionView()
 		setupUI()
 		setupColors()
 		DispatchQueue.main.async {
@@ -61,8 +72,6 @@ class SearchLocationViewController : UIViewController {
 				switch state {
 				case .onStart:
 					break
-//				case .onLoading:
-//					self?.searchFieldFrom.setLoading()
 				case .onNewDataDepartureStop:
 					self?.searchFieldFrom.configure(
 						image: Constants.locationIcon,
@@ -79,7 +88,9 @@ class SearchLocationViewController : UIViewController {
 						awaitingData: false
 					)
 				case .onNewDataJourney:
-					self?.resultJourneysView.configure(data: self?.viewModel.resultJourneysViewDataSourse)
+//					self?.resultJourneysView.configure(data: self?.viewModel.resultJourneysViewDataSourse)
+					self?.journeyCollectionView.reloadData()
+					break
 				case .onError(error: let error, _: _):
 					switch error.apiServiceErrors {
 					case .cannotConnectToHost,.cannotDecodeRawData,.cannotDecodeContentData,.badUrl,.badServerResponse, .badRequest, .requestRateExceeded:
@@ -89,15 +100,14 @@ class SearchLocationViewController : UIViewController {
 					}
 					switch error.source {
 					case .journeys:
-						self?.resultJourneysView.configure(data: ResultJourneyViewDataSourse(
-							awaitingData: false,
-							journeys: nil,
-							timeline: nil)
-						)
+						self?.journeyCollectionView.reloadData()
+//						self?.resultJourneysView.configure(data: ResultJourneyViewDataSourse(
+//							awaitingData: false,
+//							journeys: nil,
+//							timeline: nil)
+//						)
 					case .locations:
 						self?.searchFieldFrom.setStopLoading()
-//					case .stopDepartures:
-//						break
 					case .customGet:
 						break
 					}
@@ -138,5 +148,77 @@ extension SearchLocationViewController : CustomSegmentControlTouchDelegate {
 		default:
 			break
 		}
+	}
+}
+
+extension SearchLocationViewController : UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIScrollViewDelegate {
+	func collectionView(_ : UICollectionView, numberOfItemsInSection: Int) -> Int {
+		switch self.viewModel.state {
+		case .onNewDataJourney:
+			return self.viewModel.journeysData?.journeys!.count ?? 1
+		case .onError,.onNewDataArrivalStop,.onNewDataDepartureStop,.onStart:
+			return 0
+		}
+	}
+	func collectionView(_ collectionView : UICollectionView, cellForItemAt indexPath: IndexPath) ->  UICollectionViewCell {
+		if viewModel.resultJourneysCollectionViewDataSourse != nil,
+		   let journeys = viewModel.resultJourneysCollectionViewDataSourse?.journeys,
+		   viewModel.journeysData!.journeys!.count > 0 {
+			let cell = collectionView.dequeueReusableCell(
+				withReuseIdentifier: JourneyCollectionViewCell.identifier,
+				for: indexPath
+			) as! JourneyCollectionViewCell
+			
+			cell.layer.cornerRadius = Constants.CornerRadius.standart
+			cell.backgroundColor = .white
+			cell.addShadow()
+			if !journeys.isEmpty, viewModel.resultJourneysCollectionViewDataSourse?.awaitingData != true {
+				cell.configure(with: journeys[indexPath.row])
+			} else {
+				cell.configure(with: nil)
+			}
+			return cell
+		} else {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JourneyCollectionViewCell.identifier, for: indexPath) as! JourneyCollectionViewCell
+			cell.configure(with: nil)
+			return cell
+		}
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		CGSize(width: collectionView.frame.width - 10, height: 100)
+	}
+	
+//	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//		guard let cell = self.collectionView.cellForItem(at: indexPath) as? SearchResultCell else {
+//			return
+//		}
+//		let dataUser = viewModel.searchUsersData[indexPath.row]
+//		prints("tap ", dataUser.login!)
+//		cell.selectCell()
+//		viewModel.fetchUser(userId: dataUser.id, requestsGgroupIdentifier: String(Date.now.timeIntervalSince1970), cellIndexPath: indexPath)
+//	}
+	
+	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+		cell.alpha = 0
+		cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+		
+		UIView.animate(withDuration: 0.25) {
+			cell.alpha = 1
+			cell.transform = .identity
+		}
+	}
+	func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+		cell.alpha = 1
+		cell.transform = .identity
+		
+		UIView.animate(withDuration: 0.25) {
+			cell.alpha = 0
+			cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+		}
+	}
+
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 	}
 }

@@ -70,7 +70,7 @@ class ResultJourneysView: UIView {
 			journey.leadingAnchor.constraint(equalTo: timeline.trailingAnchor, constant:CGFloat(5+(65 * index))).isActive = true
 			journey.widthAnchor.constraint(equalToConstant: 60).isActive = true
 		}
-		//		self.addSubview(currentTimeLine)
+		//		self.addSubview(currentTimeLine)     
 		self.addSubview(activityIndicator)
 
 		timeline.translatesAutoresizingMaskIntoConstraints = false

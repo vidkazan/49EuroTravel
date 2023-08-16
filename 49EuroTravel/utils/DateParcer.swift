@@ -67,27 +67,35 @@ class DateParcer {
 	
 	static func getTimeStringFromDate(date : Date) -> String {
 		let dateFormatter = DateFormatter()
-
-		// Set the desired time style
 		dateFormatter.dateFormat = "HH:mm"
-
-		// Convert the Date object to a time string
 		let timeString = dateFormatter.string(from: date)
-
-//		print("Current time: \(timeString)")
 		return timeString
 	}
 	
 	static func getTimeAndDateStringFromDate(date : Date) -> String {
 		let dateFormatter = DateFormatter()
-
-		// Set the desired time style
 		dateFormatter.dateFormat = "dd MMM YYYY  HH:mm"
-
-		// Convert the Date object to a time string
 		let timeString = dateFormatter.string(from: date)
-
-//		print("Current time: \(timeString)")
 		return timeString
+	}
+	
+	static func getTimeStringWithHoursAndMinutesFormat(minutes: Int?) -> String? {
+		guard let minutes = minutes else { return nil }
+			let hours = minutes / 60
+			let remainingMinutes = minutes % 60
+			
+			var formattedTime = ""
+			
+			if hours > 0 {
+				formattedTime = "\(hours) h"
+			}
+			
+			if remainingMinutes > 0 {
+				if !formattedTime.isEmpty {
+					formattedTime += " "
+				}
+				formattedTime += "\(remainingMinutes) min"
+			}
+			return formattedTime
 	}
 }
