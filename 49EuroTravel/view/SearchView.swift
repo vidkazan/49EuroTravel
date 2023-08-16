@@ -31,6 +31,7 @@ class SearchView: UIView {
 	let name : UITextField = {
 		let name = UITextField()
 		name.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+		name.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
 		name.rightViewMode = .always
 		name.font = UIFont.systemFont(ofSize: 17, weight: .regular)
 		return name
@@ -38,6 +39,10 @@ class SearchView: UIView {
 	
 	@objc private func textFieldDidChange(_ textField: UITextField) {
 		delegate?.textFieldDidChange(text: textField.text ?? "", type: self.type)
+	}
+	
+	@objc private func textFieldEditingDidBegin(_ textField: UITextField) {
+		textField.text = ""
 	}
 	
 	@objc private func viewTapped(_ sender : UITapGestureRecognizer) {
