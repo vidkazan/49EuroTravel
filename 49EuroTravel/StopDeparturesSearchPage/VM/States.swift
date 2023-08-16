@@ -13,7 +13,7 @@ enum SearchControllerStates {
 	case onNewDataDepartureStop
 	case onNewDataArrivalStop
 	case onNewDataJourney
-	case onError(error : ApiServiceErrors, indexPath : IndexPath?)
+	case onError(error : CustomErrors, indexPath : IndexPath?)
 	
 	var description : String {
 		switch self {

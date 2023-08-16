@@ -56,26 +56,4 @@ extension SearchLocationViewControllerViewModel {
 			}
 		}
 	}
-	
-	//	func fetchDepartures(){
-	//		var query : [URLQueryItem] = []
-	//		query = Query.getQueryItems(methods: [
-	//			Query.duration(minutes: 20),
-	//			Query.national(icTrains: false),
-	//			Query.nationalExpress(iceTrains: false),
-	//			Query.pretty(pretyIntend: false),
-	//			Query.remarks(showRemarks: true),
-	//			Query.subway(uBahn: false),
-	//			Query.taxi(taxi: false),
-	//			Query.bus(bus: false)
-	//		])
-	//		ApiService.fetch(Departures.self,query: query, type: ApiService.Requests.stopDepartures(stopId: Constants.stopIdNeuss),requestGroupId: "") { [self] result in
-	//			switch result {
-	//			case .success(let res) :
-	//				self.searchUsersData = res.departures
-	//			case .failure(let error) :
-	//				self.state = .onError(error: error, indexPath: nil)
-	// 			}
-	//		}
-	//	}
 }

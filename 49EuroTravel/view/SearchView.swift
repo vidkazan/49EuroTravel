@@ -18,6 +18,7 @@ protocol SearchViewDelegate {
 }
 
 class SearchView: UIView {
+	var image : UIView?
 	var type : LocationDirectionType
 	var stops : [Stop] = []
 	var delegate: SearchViewDelegate?
@@ -54,7 +55,8 @@ class SearchView: UIView {
 		super.init(frame: .zero)
 		self.layer.cornerRadius = Constants.CornerRadius.small
 		self.backgroundColor = .systemGray6
-		self.name.rightView = image
+		self.image = image
+		self.name.rightView = self.image
 		if let image = image {
 			image.tintColor = .darkGray
 		}
@@ -89,7 +91,16 @@ class SearchView: UIView {
 		}
 	}
 	
-	func configure(image: UIView?, stops : [Stop], isNotFound : Bool) {
+	func configure(image: UIView?, stops : [Stop], isNotFound : Bool, awaitingData: Bool) {
+		switch awaitingData {
+			case true:
+				prints("set")
+				self.setLoading()
+				return
+			case false:
+				prints("stop")
+				self.setStopLoading()
+		}
 		self.stops = stops
 		updateResultView(stops: stops,isNotFound: isNotFound)
 		if let image = image {
@@ -122,7 +133,9 @@ extension SearchView {
 		activityIndicator.startAnimating()
 		self.name.rightView = activityIndicator
 	}
-	func setStopLoading(view : UIView?) {
-		self.name.rightView = view
+	func setStopLoading() {
+		if let image = image {
+			self.name.rightView = image
+		}
 	}
 }

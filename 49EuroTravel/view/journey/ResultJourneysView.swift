@@ -37,8 +37,7 @@ class ResultJourneysView: UIView {
 			return
 		}
 		switch data.awaitingData {
-			case true:
-				prints("set")
+		case true:
 				self.setLoading()
 				self.timeline.configure(data: nil)
 				for journey in self.journeysViews {
@@ -46,7 +45,6 @@ class ResultJourneysView: UIView {
 				}
 				return
 			case false:
-				prints("stop")
 				self.setStopLoading(view: nil)
 		}
 		guard let dataJourneys = data.journeys else { return }

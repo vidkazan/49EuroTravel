@@ -18,15 +18,13 @@ class ApiService  {
 	enum Requests {
 		case journeys
 		case locations(name : String)
-		case stopDepartures(stopId : Int)
+//		case stopDepartures(stopId : Int)
 		case customGet(path : String)
 		
 		var description : String {
 			switch self {
 			case .locations:
 				return "locations"
-			case .stopDepartures:
-				return "stopDepartures"
 			case .customGet:
 				return "customGet"
 			case .journeys:
@@ -38,8 +36,6 @@ class ApiService  {
 			switch self {
 			case .customGet:
 				return 0
-			case .stopDepartures:
-				return 1
 			case .locations:
 				return 2
 			case .journeys:
@@ -49,22 +45,22 @@ class ApiService  {
 		
 		var method : String {
 			switch self {
-			case .stopDepartures, .locations, .customGet, .journeys:
+			case .locations, .customGet, .journeys:
 				return "GET"
 			}
 		}
 		
 		var headers : [(value : String, key : String)] {
 			switch self {
-			case .stopDepartures,.customGet, .locations, .journeys:
+			case .customGet, .locations, .journeys:
 				return []
 			}
 		}
 		
 		var urlString : String {
 			switch self {
-			case .stopDepartures(let stopId):
-				return Constants.apiData.urlPathStops + String(stopId) + Constants.apiData.urlPathDepartures
+//			case .stopDepartures(let stopId):
+//				return Constants.apiData.urlPathStops + String(stopId) + Constants.apiData.urlPathDepartures
 			case .journeys:
 				return Constants.apiData.urlPathJourneys
 			case .locations:
@@ -76,7 +72,7 @@ class ApiService  {
 		
 		func getRequest(urlEndPoint : URL) -> URLRequest {
 			switch self {
-			case .stopDepartures, .customGet, .locations,.journeys:
+			case .customGet, .locations,.journeys:
 				var req = URLRequest(url : urlEndPoint)
 				req.httpMethod = self.method
 				for header in self.headers {
@@ -96,7 +92,7 @@ class ApiService  {
 		query : [URLQueryItem],
 		type : Requests,
 		requestGroupId : String,
-		completed: @escaping (Result<T, ApiServiceErrors>) -> Void) {
+		completed: @escaping (Result<T, CustomErrors>) -> Void) {
 		switch type {
 		case .customGet:
 			queue.async {
@@ -109,7 +105,7 @@ class ApiService  {
 			}
 		default:
 			switch type {
-			case .stopDepartures, .locations:
+			case .locations:
 				currentRequestGroupId = requestGroupId
 				break
 			default:
@@ -130,7 +126,7 @@ class ApiService  {
 					while !fetchLobbyDeque.isEmpty {
 						let task = self.fetchLobbyDeque.popFirst()
 						switch type {
-						case .stopDepartures, .locations,.journeys:
+						case .locations,.journeys:
 							if let t = set[type.index].1 {
 //							//	prints("previous is cancelled")
 								t.cancel()
@@ -139,7 +135,7 @@ class ApiService  {
 							break
 						}
 						switch type {
-						case .stopDepartures, .locations:
+						case .locations, .journeys:
 							if fetchLobbyDeque.contains(where: { $0.0.type == task?.0.type }) {
 								prints(task?.0.type.description ?? "", task?.0.query ?? "", "DROPPED by type")
 							} else {
@@ -163,7 +159,7 @@ class ApiService  {
 //								prints(task?.0.type.description ?? "", task?.0.query ?? "")
 //							}
 //							return
-						default:
+						case .customGet:
 //							prints(task?.0.type.description ?? "", task?.0.query ?? "", "waiting")
 //							usleep(100000)
 //							prints(task?.0.type.description ?? "", task?.0.query ?? "", "starting")
@@ -176,14 +172,14 @@ class ApiService  {
 		}
 	}
 	
-	static private func execute<T : Decodable>(_ t : T.Type,query : [URLQueryItem], type : Requests,completed: @escaping (Result<T, ApiServiceErrors>) -> Void) {
+	static private func execute<T : Decodable>(_ t : T.Type,query : [URLQueryItem], type : Requests,completed: @escaping (Result<T, CustomErrors>) -> Void) {
 		let sessionConfig = URLSessionConfiguration.default
 		sessionConfig.timeoutIntervalForRequest = 10.0
 		let session = URLSession(configuration: sessionConfig)
 		
 		let url : URL? = {
 			switch type {
-			case .stopDepartures, .locations,.journeys:
+			case .locations,.journeys:
 				var components = URLComponents()
 				components.path = type.urlString
 				components.host = Constants.apiData.urlBase
@@ -196,7 +192,8 @@ class ApiService  {
 			}
 		}()
 		guard let url = url else {
-			completed(.failure(.badUrl))
+			let error = CustomErrors(apiServiceErrors: .badUrl, source: type)
+			completed(.failure(error))
 			print(">",Date.now.timeIntervalSince1970,type.description ,query)
 			set[type.index].1 = nil
 			return
@@ -209,7 +206,7 @@ class ApiService  {
 					case -999:
 						break
 					default:
-						completed(.failure(.cannotConnectToHost(string: error.localizedDescription)))
+						completed(.failure(CustomErrors(apiServiceErrors: .cannotConnectToHost(string: error.localizedDescription), source: type)))
 					}
 					print(">",Date.now.timeIntervalSince1970,type.description,query,"error Connect to HOST")
 					set[type.index].1 = nil
@@ -217,7 +214,7 @@ class ApiService  {
 				}
 				
 				guard let response = response as? HTTPURLResponse  else {
-					completed(.failure(.cannotDecodeRawData))
+					completed(.failure(CustomErrors(apiServiceErrors: .cannotDecodeRawData, source: type)))
 					print(">",Date.now.timeIntervalSince1970,type.description,query,"error Bad Response")
 					set[type.index].1 = nil
 					return
@@ -230,31 +227,32 @@ class ApiService  {
 //						set[type.index].1 = nil
 //						return
 					case 400:
-						completed(.failure(.badRequest))
+					completed(.failure(CustomErrors(apiServiceErrors: .badRequest, source: type)))
 						print(">",Date.now.timeIntervalSince1970,type.description,query,"error Bad Response")
 						set[type.index].1 = nil
 						return
 					case 429:
-					completed(.failure(.requestRateExceeded))
+					completed(.failure(CustomErrors(apiServiceErrors: .requestRateExceeded, source: type)))
 						print(">",Date.now.timeIntervalSince1970,type.description,query,"error Bad Response")
 						set[type.index].1 = nil
 						return
 					case 200:
 						break
 					default:
-						completed(.failure(.badServerResponse(code: response.statusCode)))
+					
+						completed(.failure(CustomErrors(apiServiceErrors: .badServerResponse(code: response.statusCode), source: type)))
 						print(">",Date.now.timeIntervalSince1970,type.description,query,"error Bad Response")
 						set[type.index].1 = nil
 						return
 				}
 				guard let data = data else {
-					completed(.failure(.cannotDecodeRawData))
+					completed(.failure(CustomErrors(apiServiceErrors: .cannotDecodeRawData, source: type)))
 					print(">",Date.now.timeIntervalSince1970,type.description,query,"error Get Data")
 					set[type.index].1 = nil
 					return
 				}
 				switch type {
-				case .stopDepartures, .locations,.journeys:
+				case .locations,.journeys:
 					let decoder = JSONDecoder()
 					do {
 						let decodedData = try decoder.decode(T.self, from: data)
@@ -263,7 +261,7 @@ class ApiService  {
 						set[type.index].1 = nil
 						break
 					} catch {
-						completed(.failure(.cannotDecodeContentData))
+						completed(.failure(CustomErrors(apiServiceErrors: .cannotDecodeContentData, source: type)))
 //						print(type.description,query,"error Decode JSON")
 						set[type.index].1 = nil
 						return
@@ -276,7 +274,7 @@ class ApiService  {
 		}
 		
 		switch type {
-		case .stopDepartures, .locations,.journeys:
+		case .locations,.journeys:
 			set[type.index].1 = task
 		case .customGet:
 			break

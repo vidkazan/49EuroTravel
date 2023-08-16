@@ -63,7 +63,8 @@ class SearchLocationViewController : UIViewController {
 					self?.searchFieldFrom.configure(
 						image: Constants.locationIcon,
 						stops: [],
-						isNotFound: false
+						isNotFound: false,
+						awaitingData: false
 					)
 				case .onLoading:
 					self?.searchFieldFrom.setLoading()
@@ -71,24 +72,39 @@ class SearchLocationViewController : UIViewController {
 					self?.searchFieldFrom.configure(
 						image: Constants.locationIcon,
 						stops: self?.viewModel.searchLocationDataDeparture ?? [],
-						isNotFound: false
+						isNotFound: false,
+						awaitingData: false
 					)
 				case .onNewDataArrivalStop:
-					self?.searchFieldFrom.setStopLoading(view: Constants.locationIcon)
+					self?.searchFieldFrom.setStopLoading()
 					self?.searchFieldTo.configure(
 						image: Constants.flipIcon,
 						stops: self?.viewModel.searchLocationDataArrival ?? [],
-						isNotFound: false
+						isNotFound: false,
+						awaitingData: false
 					)
 				case .onNewDataJourney:
 					self?.resultJourneysView.configure(data: self?.viewModel.resultJourneysViewDataSourse)
 				case .onError(error: let error, _: _):
-					self?.searchFieldFrom.setStopLoading(view: Constants.locationIcon)
-					switch error {
+					switch error.apiServiceErrors {
 					case .cannotConnectToHost,.cannotDecodeRawData,.cannotDecodeContentData,.badUrl,.badServerResponse, .badRequest, .requestRateExceeded:
 						guard let self = self else { fatalError("no view controller object") }
-						self.alert.message = error.description
+						self.alert.message = error.apiServiceErrors.description
 						self.present(self.alert, animated: true, completion: nil)
+					}
+					switch error.source {
+					case .journeys:
+						self?.resultJourneysView.configure(data: ResultJourneyViewDataSourse(
+							awaitingData: false,
+							journeys: nil,
+							timeline: nil)
+						)
+					case .locations:
+						self?.searchFieldFrom.setStopLoading()
+//					case .stopDepartures:
+//						break
+					case .customGet:
+						break
 					}
 				}
 			}

@@ -7,7 +7,12 @@
 
 import Foundation
 
-enum ApiServiceErrors: Error {
+struct CustomErrors : Error {
+	let apiServiceErrors : ApiServiceError
+	let source : ApiService.Requests
+}
+
+enum ApiServiceError {
 	case badUrl
 	case cannotConnectToHost(string : String)
 	case badServerResponse(code : Int)
