@@ -22,9 +22,10 @@
 		7D73870A2A83D04B00ABFFFB /* ViewDataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7387092A83D04B00ABFFFB /* ViewDataSourse.swift */; };
 		7D9305F62A8D2FAD00285EDD /* JourneyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9305F52A8D2FAD00285EDD /* JourneyCollectionViewCell.swift */; };
 		7D9305F82A8D32F300285EDD /* JourneyCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9305F72A8D32F300285EDD /* JourneyCellHeaderView.swift */; };
-		7D9305FB2A8D342300285EDD /* JourneyCellLegsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9305FA2A8D342300285EDD /* JourneyCellLegsView.swift */; };
 		7D9305FD2A8D343300285EDD /* JourneyCellBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9305FC2A8D343300285EDD /* JourneyCellBadgesView.swift */; };
 		7D9305FF2A8D53A800285EDD /* UIView+addShadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9305FE2A8D53A800285EDD /* UIView+addShadows.swift */; };
+		7D9306012A8D807500285EDD /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9306002A8D807500285EDD /* PaddingLabel.swift */; };
+		7D9306032A8D813600285EDD /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9306022A8D813600285EDD /* BadgeView.swift */; };
 		7D9AC38A2A85633600F89785 /* ViewModel+ConstructJourneyData+Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9AC3892A85633600F89785 /* ViewModel+ConstructJourneyData+Timeline.swift */; };
 		7DB40EA32A842D100046C634 /* DataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB40EA22A842D100046C634 /* DataSourse.swift */; };
 		7DB40EA52A842D750046C634 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB40EA42A842D750046C634 /* States.swift */; };
@@ -85,9 +86,10 @@
 		7D8D1F622A82DADC00DC3351 /* Journey.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Journey.geojson; sourceTree = "<group>"; };
 		7D9305F52A8D2FAD00285EDD /* JourneyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D9305F72A8D32F300285EDD /* JourneyCellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyCellHeaderView.swift; sourceTree = "<group>"; };
-		7D9305FA2A8D342300285EDD /* JourneyCellLegsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyCellLegsView.swift; sourceTree = "<group>"; };
 		7D9305FC2A8D343300285EDD /* JourneyCellBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyCellBadgesView.swift; sourceTree = "<group>"; };
 		7D9305FE2A8D53A800285EDD /* UIView+addShadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addShadows.swift"; sourceTree = "<group>"; };
+		7D9306002A8D807500285EDD /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		7D9306022A8D813600285EDD /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		7D9AC3892A85633600F89785 /* ViewModel+ConstructJourneyData+Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModel+ConstructJourneyData+Timeline.swift"; sourceTree = "<group>"; };
 		7DB40EA22A842D100046C634 /* DataSourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourse.swift; sourceTree = "<group>"; };
 		7DB40EA42A842D750046C634 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
@@ -156,8 +158,8 @@
 			children = (
 				7D9305F52A8D2FAD00285EDD /* JourneyCollectionViewCell.swift */,
 				7D9305F72A8D32F300285EDD /* JourneyCellHeaderView.swift */,
-				7D9305FA2A8D342300285EDD /* JourneyCellLegsView.swift */,
 				7D9305FC2A8D343300285EDD /* JourneyCellBadgesView.swift */,
+				7D9306022A8D813600285EDD /* BadgeView.swift */,
 			);
 			path = "journey-horizontal";
 			sourceTree = "<group>";
@@ -258,6 +260,7 @@
 				7D10F3062A0671990077B877 /* DelayReasonCodesList.swift */,
 				7DC9CF332A8AC91800652330 /* CustomSegmentControl.swift */,
 				7D9305FE2A8D53A800285EDD /* UIView+addShadows.swift */,
+				7D9306002A8D807500285EDD /* PaddingLabel.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				7D7387062A83CCEA00ABFFFB /* ViewModel+ConstructJourneyData.swift in Sources */,
 				7D5FCE8B2A8137F30051A3AF /* UIStackView+RemoveSubviews.swift in Sources */,
 				7DC4E8912A05260D0053ED3E /* Prints.swift in Sources */,
+				7D9306012A8D807500285EDD /* PaddingLabel.swift in Sources */,
 				7DF88AC22A83ADA800BBB3F3 /* TimelineView.swift in Sources */,
 				7DC4E8572A0521150053ED3E /* StopDeparturesViewController.swift in Sources */,
 				7DB40EA52A842D750046C634 /* States.swift in Sources */,
@@ -444,6 +448,7 @@
 				7D09068A2A05282C008074C1 /* Constants.swift in Sources */,
 				7DB40EA32A842D100046C634 /* DataSourse.swift in Sources */,
 				7DC4E8862A0524430053ED3E /* ApiServiceErrors.swift in Sources */,
+				7D9306032A8D813600285EDD /* BadgeView.swift in Sources */,
 				7D9305F62A8D2FAD00285EDD /* JourneyCollectionViewCell.swift in Sources */,
 				7D0906902A0534A5008074C1 /* Query.swift in Sources */,
 				7DC4E8882A05249D0053ED3E /* ApiService.swift in Sources */,
@@ -465,7 +470,6 @@
 				7D08E5672A8A47A200BC67A6 /* TimeChoosingView.swift in Sources */,
 				7D9305FF2A8D53A800285EDD /* UIView+addShadows.swift in Sources */,
 				7DC4E8832A0523C80053ED3E /* DTO.swift in Sources */,
-				7D9305FB2A8D342300285EDD /* JourneyCellLegsView.swift in Sources */,
 				7D09068C2A053458008074C1 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

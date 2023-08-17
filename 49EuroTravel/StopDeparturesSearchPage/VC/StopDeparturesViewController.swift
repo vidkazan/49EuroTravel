@@ -25,6 +25,7 @@ class SearchLocationViewController : UIViewController {
 	var timeControl : CustomSegmentControl = {
 		let str = ["now",DateParcer.getTimeAndDateStringFromDate(date: Date.now)]
 		let view = CustomSegmentControl(items: str)
+		view.layer.cornerRadius = Constants.CornerRadius.standart
 		let font = UIFont.systemFont(ofSize: 16)
 		view.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
 		view.selectedSegmentIndex = 0
@@ -115,7 +116,6 @@ class SearchLocationViewController : UIViewController {
 			}
 		}
 	}
-	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}
@@ -186,7 +186,7 @@ extension SearchLocationViewController : UICollectionViewDelegate, UICollectionV
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		CGSize(width: collectionView.frame.width - 10, height: 100)
+		CGSize(width: collectionView.frame.width - 10, height: 120)
 	}
 	
 //	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

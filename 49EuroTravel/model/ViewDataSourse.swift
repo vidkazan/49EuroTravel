@@ -8,11 +8,32 @@
 import Foundation
 import UIKit
 
-enum badgesList {
+enum BadgesList {
 	case price(price: String)
 	case dticket
 	case cancelled
 	case connectionNotReachable
+	
+	var badgeView : BadgeView {
+		switch self {
+		case .price(let price):
+			return BadgeView(badge: BadgeDataSource(
+				color: UIColor.CompanionColors.red,
+				name: price))
+		case .dticket:
+			return BadgeView(badge: BadgeDataSource(
+				color: UIColor.CompanionColors.green,
+				name: "DeutschlandTicket"))
+		case .cancelled:
+			return BadgeView(badge: BadgeDataSource(
+				color: UIColor.CompanionColors.red,
+				name: "cancelled"))
+		case .connectionNotReachable:
+			return BadgeView(badge: BadgeDataSource(
+				color: UIColor.CompanionColors.red,
+				name: "connection is not reachable"))
+		}
+	}
 }
 
 struct TimelineTimeLabelDataSourse : Equatable {

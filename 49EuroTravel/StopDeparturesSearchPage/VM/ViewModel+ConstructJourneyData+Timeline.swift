@@ -15,8 +15,8 @@ extension SearchLocationViewControllerViewModel {
 		let fTs = firstTS.timeIntervalSinceReferenceDate
 		let lTs = lastTS.timeIntervalSinceReferenceDate
 		let cTs = currentTS.timeIntervalSinceReferenceDate
-		let ext = (lTs - fTs) * 0.02
-		
+//		let ext = (lTs - fTs) * 0.02
+		let ext = 0.0
 		let fTsExtended = fTs - ext
 		let lTsExtended = lTs + ext
 		

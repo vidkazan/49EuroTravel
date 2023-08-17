@@ -12,14 +12,12 @@ class JourneyCellHeaderView: UIView {
 		let label = UILabel()
 		label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
 		label.textColor = UIColor(hue: 0, saturation: 0, brightness: 0.1, alpha: 1)
-		label.text = "66:66"
 		return label
 	}()
 	var durationLabel : UILabel = {
 		let label = UILabel()
 		label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
 		label.textColor = UIColor(hue: 0, saturation: 0, brightness: 0.1, alpha: 1)
-		label.text = "11h 11min"
 		return label
 		
 	}()
@@ -27,7 +25,6 @@ class JourneyCellHeaderView: UIView {
 		let label = UILabel()
 		label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
 		label.textColor = UIColor(hue: 0, saturation: 0, brightness: 0.1, alpha: 1)
-		label.text = "77:77"
 		return label
 	}()
 	

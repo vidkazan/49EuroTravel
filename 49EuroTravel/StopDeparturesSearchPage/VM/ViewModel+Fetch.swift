@@ -21,7 +21,7 @@ extension SearchLocationViewControllerViewModel {
 				Query.pretty(pretyIntend: false),
 				Query.taxi(taxi: false),
 				Query.remarks(showRemarks: true),
-				Query.results(max: 4),
+				Query.results(max: 5),
 				Query.transferTime(transferTime: "0")
 			])
 		ApiService.fetch(JourneysContainer.self,query: query, type: ApiService.Requests.journeys,requestGroupId: "") { [self] result in

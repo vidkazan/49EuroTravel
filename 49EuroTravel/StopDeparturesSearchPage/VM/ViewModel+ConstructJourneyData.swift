@@ -32,7 +32,7 @@ extension SearchLocationViewControllerViewModel {
 			name: lineName,
 			legTopPosition: actualDeparturePosition,
 			legBottomPosition: actualArrivalPosition > plannedArrivalPosition ? actualArrivalPosition : plannedArrivalPosition ,
-			color: UIColor.CompanionColors.secondary
+			color: .darkGray
 		)
 		return res
 	}
@@ -73,8 +73,8 @@ extension SearchLocationViewControllerViewModel {
 			guard let journeyLegs = journey.legs else { return }
 			guard let journeyFirstLeg = journeyLegs.first else { return }
 			guard let journeyLastLeg = journeyLegs.last else { return }
-			guard let firstTimestamp = journeyFirstLeg.plannedDeparture else { return }
-			guard let lastTimestamp = journeyLastLeg.plannedArrival else { return }
+			guard let firstTimestamp = journeyFirstLeg.departure else { return }
+			guard let lastTimestamp = journeyLastLeg.arrival else { return }
 			guard let firstTS = DateParcer.getDateFromDateString(dateString: firstTimestamp) else { return }
 			guard let lastTS = DateParcer.getDateFromDateString(dateString: lastTimestamp) else { return }
 			if let res = self.constructJourneyCollectionViewData(journey: journey, firstTS: firstTS, lastTS: lastTS) {
