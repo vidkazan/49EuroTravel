@@ -58,7 +58,7 @@ class JourneyView: UIView {
 	}
 }
 
-class HorizontalJourneyView: UIView {
+class HorizontalJourneyView: PrintUIView {
 	var workingViews : [UIView] = []
 	let bg : UIView = {
 		let view = UIView()
@@ -66,16 +66,19 @@ class HorizontalJourneyView: UIView {
 //		view.layer.cornerRadius = Constants.CornerRadius.tiny
 		return view
 	}()
-	init() {
-		super.init(frame: .zero)
+	override init(frame: CGRect) {
+		super.init(frame: frame)
 		self.layer.cornerRadius = Constants.CornerRadius.tiny
 	}
+	
 	func configure(data: JourneyCollectionViewDataSourse?){
+		prints("bounds LegsView",self.bounds)
 		for view in workingViews {
 			view.removeFromSuperview()
 		}
 		bg.removeFromSuperview()
 		guard let data = data else { return }
+		
 		let topPosition = data.legs[0].legTopPosition
 		self.addSubview(bg)
 		var lastPosition : Double = 0
@@ -93,7 +96,7 @@ class HorizontalJourneyView: UIView {
 			leg0.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 //			switch index.isMultiple(of: 2){
 //			case true:
-				leg0.heightAnchor.constraint(equalTo: self.heightAnchor,constant: -10).isActive = true
+				leg0.heightAnchor.constraint(equalTo: self.heightAnchor,constant: -20).isActive = true
 //			case false:
 //				leg0.heightAnchor.constraint(equalTo: self.heightAnchor,constant: -5).isActive = true
 //			}
@@ -102,8 +105,8 @@ class HorizontalJourneyView: UIView {
 		bg.translatesAutoresizingMaskIntoConstraints = false
 		bg.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * topPosition).isActive = true
 		bg.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.bounds.width * lastPosition).isActive = true
-		bg.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
-		bg.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8).isActive = true
+		bg.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+		bg.heightAnchor.constraint(equalToConstant: 20).isActive = true
 	}
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")

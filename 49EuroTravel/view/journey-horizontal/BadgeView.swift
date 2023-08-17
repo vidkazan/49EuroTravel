@@ -31,7 +31,7 @@ class BadgeView: UIView {
 
 	let kind : PaddingLabel = {
 		let date = PaddingLabel(inset: 6)
-		date.font = date.font.withSize(12)
+		date.font = date.font.withSize(10)
 		date.layer.masksToBounds = true
 		date.textColor = .white
 		date.layer.cornerRadius = Constants.CornerRadius.small

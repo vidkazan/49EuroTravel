@@ -54,6 +54,8 @@ enum Query{
 	case arrivalStop(arrivalStopId : String?)
 	case departureTime(departureTime : Date)
 	case arrivalTime(arrivalTime : Date)
+	case earlierThan(earlierRef : String)
+	case laterThan(laterRef : String)
 	
 	func getQueryMethod() -> URLQueryItem {
 		switch self {
@@ -155,6 +157,14 @@ enum Query{
 			return URLQueryItem(
 				name: "transferTime",
 				value: transferTime)
+		case .earlierThan(earlierRef: let earlierRef):
+			return URLQueryItem(
+				name: "earlierThan",
+				value: earlierRef)
+		case .laterThan(laterRef: let laterRef):
+			return URLQueryItem(
+				name: "laterThan",
+				value: laterRef)
 		}
 	}
 	static func getQueryItems(methods : [Query]) -> [URLQueryItem] {

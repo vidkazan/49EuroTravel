@@ -65,6 +65,7 @@ class SearchView: UIView {
 		self.backgroundColor = .systemGray6
 		self.image = image
 		self.name.rightView = self.image
+		self.name.delegate = self
 		if let image = image {
 			image.tintColor = .darkGray
 		}
@@ -102,11 +103,9 @@ class SearchView: UIView {
 	func configure(image: UIView?, stops : [Stop], isNotFound : Bool, awaitingData: Bool) {
 		switch awaitingData {
 			case true:
-				prints("set")
 				self.setLoading()
 				return
 			case false:
-				prints("stop")
 				self.setStopLoading()
 		}
 		self.stops = stops
@@ -145,5 +144,11 @@ extension SearchView {
 		if let image = image {
 			self.name.rightView = image
 		}
+	}
+}
+
+extension SearchView : UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		self.endEditing(true)
 	}
 }

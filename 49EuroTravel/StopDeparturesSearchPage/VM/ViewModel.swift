@@ -37,7 +37,7 @@ class SearchLocationViewControllerViewModel {
 //			self.state = .onNewDataJourney
 //		}
 //	}
-	var resultJourneysCollectionViewDataSourse : AllJourneysCollectionViewDataSourse? {
+	var resultJourneysCollectionViewDataSourse : AllJourneysCollectionViewDataSourse {
 		didSet {
 			self.state = .onNewDataJourney
 		}
@@ -46,6 +46,7 @@ class SearchLocationViewControllerViewModel {
 	
 	init(){
 		self.state = .onStart
+		self.resultJourneysCollectionViewDataSourse = AllJourneysCollectionViewDataSourse(awaitingData: false, journeys: [])
 	}
 }
 

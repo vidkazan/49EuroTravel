@@ -48,13 +48,12 @@ class SearchLocationViewController : UIViewController {
 	init(_ viewModel: SearchLocationViewControllerViewModel = SearchLocationViewControllerViewModel() ) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
+		
 	}
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -91,6 +90,7 @@ class SearchLocationViewController : UIViewController {
 				case .onNewDataJourney:
 //					self?.resultJourneysView.configure(data: self?.viewModel.resultJourneysViewDataSourse)
 					self?.journeyCollectionView.reloadData()
+					self?.journeyCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
 					break
 				case .onError(error: let error, _: _):
 					switch error.apiServiceErrors {
@@ -123,12 +123,14 @@ class SearchLocationViewController : UIViewController {
 
 extension SearchLocationViewController {
 	func hideKeyboardWhenTappedAround() {
-		let tap = UITapGestureRecognizer(target: self, action: #selector(SearchLocationViewController.dismissKeyboard))
+		let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+		let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
 		tap.cancelsTouchesInView = false
 	}
 	
-	@objc func dismissKeyboard() {
-		view.endEditing(true)
+	@objc func dismissKeyboard(_ sender : Any) {
+		self.view.endEditing(true)
+		self.resignFirstResponder()
 	}
 }
 
@@ -161,9 +163,8 @@ extension SearchLocationViewController : UICollectionViewDelegate, UICollectionV
 		}
 	}
 	func collectionView(_ collectionView : UICollectionView, cellForItemAt indexPath: IndexPath) ->  UICollectionViewCell {
-		if viewModel.resultJourneysCollectionViewDataSourse != nil,
-		   let journeys = viewModel.resultJourneysCollectionViewDataSourse?.journeys,
-		   viewModel.journeysData!.journeys!.count > 0 {
+		let journeys = viewModel.resultJourneysCollectionViewDataSourse.journeys
+		if journeys.count > 0 {
 			let cell = collectionView.dequeueReusableCell(
 				withReuseIdentifier: JourneyCollectionViewCell.identifier,
 				for: indexPath
@@ -172,7 +173,7 @@ extension SearchLocationViewController : UICollectionViewDelegate, UICollectionV
 			cell.layer.cornerRadius = Constants.CornerRadius.standart
 			cell.backgroundColor = .white
 			cell.addShadow()
-			if !journeys.isEmpty, viewModel.resultJourneysCollectionViewDataSourse?.awaitingData != true {
+			if viewModel.resultJourneysCollectionViewDataSourse.awaitingData != true {
 				cell.configure(with: journeys[indexPath.row])
 			} else {
 				cell.configure(with: nil)
